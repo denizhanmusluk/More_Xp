@@ -23,7 +23,7 @@ public class meteorUpgrade : MonoBehaviour
     public int meteorLevel;
     [SerializeField] int[] coolDownLevel;
     [SerializeField] int[] damageLevel;
-    [SerializeField] int[] meteorTimeLevel;
+    [SerializeField] float[] meteorTimeLevel;
     void Start()
     {
 
