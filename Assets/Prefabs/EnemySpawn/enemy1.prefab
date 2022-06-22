@@ -1483,6 +1483,8 @@ MonoBehaviour:
   player: {fileID: 0}
   currentBehaviour: 0
   agent: {fileID: 0}
+  _enemyCreator: {fileID: 0}
+  Health: 3
 --- !u!95 &520997120976281743
 Animator:
   serializedVersion: 3

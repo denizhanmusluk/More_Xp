@@ -20,9 +20,24 @@ public class characterControl : MonoBehaviour
     // Update is called once per frame
    public void attackAnim()
     {
-        _playerBehaviour.attackFunction();
+        _playerBehaviour.attackAnimationEvent();
     }
-
+    public void bashAnim()
+    {
+        _playerBehaviour.bashAttackAnimationEvent();
+    }
+    public void stompAnim()
+    {
+        _playerBehaviour.stompAttackAnimationEvent();
+    }
+    public void spinAnim()
+    {
+        _playerBehaviour.spinAttackAnimationEvent();
+    }
+    public void tornadoAnim()
+    {
+        _playerBehaviour.tornadoAttackAnimationEvent();
+    }
     public void playerStop()
     {
         float firstAngleX = Mathf.Cos((transform.localEulerAngles.y + 90) * Mathf.Deg2Rad);

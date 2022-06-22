@@ -38,7 +38,7 @@ public class enemyCreator : MonoBehaviour,IStartGameObserver
             {
                 enemySpawn();
             }
-            yield return new WaitForSeconds(2f);
+            yield return new WaitForSeconds(1f);
         }
     }
     void enemySpawn()
