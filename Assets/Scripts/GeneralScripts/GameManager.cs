@@ -50,7 +50,7 @@ public class GameManager : MonoBehaviour, IWinObserver, ILoseObserver
         Globals.moneyAmount = Globals.moneyAmount + miktar;
         LeanTween.value(moneyOld, Globals.moneyAmount, 0.2f).setOnUpdate((float val) =>
         {
-            moneyLabel.text = val.ToString("N0");
+            moneyLabel.text = ((int)val).ToString();
         });//.setOnComplete(() =>{});
         PlayerPrefs.SetInt("money", Globals.moneyAmount);
 

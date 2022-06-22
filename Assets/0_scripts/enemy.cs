@@ -5,6 +5,7 @@ using UnityEngine.AI;
 
 public class enemy : MonoBehaviour
 {
+    [SerializeField] int earnMoney;
     public GameObject player;
     public enum States { idle, followPlayer, death, attack }
     public States currentBehaviour;
@@ -63,6 +64,7 @@ public class enemy : MonoBehaviour
             _enemyCreator.enemyAll.Remove(gameObject);
             player.transform.parent.GetComponent<playerBehaviour>().enemies.Remove(this.gameObject);
             GetComponent<Ragdoll>().RagdollActivateWithForce(true, 0.35f * (forceDirection + new Vector3(0, 0.5f, 0)));
+            GameManager.Instance.MoneyUpdate(earnMoney);
 
             Destroy(gameObject, 2f);
         }

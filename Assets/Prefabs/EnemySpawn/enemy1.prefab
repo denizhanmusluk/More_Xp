@@ -1480,6 +1480,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6f4441037ae37d540a6c60b5b11e4da2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  earnMoney: 10
   player: {fileID: 0}
   currentBehaviour: 0
   agent: {fileID: 0}
