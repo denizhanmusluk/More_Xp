@@ -187,84 +187,6 @@ public class playerBehaviour : MonoBehaviour
         attacking = true;
     }
     #endregion
-    #region tornado attack
-    public void tornadoAttack(Transform _enemy)
-    {
-        Globals.isGameActive = false;
-        StartCoroutine(_attack(_enemy, 10));
-        animator.SetTrigger("tornado");
-
- 
-    }
-    public void tornadoAttackAnimationEvent()
-    {
-        _skillManager.tornadoCooldown();
-        StartCoroutine(tornadoAttacking());
-    }
-    IEnumerator tornadoAttacking()
-    {
-        GameObject tornado = Instantiate(tornadoPrefab, transform.position + transform.GetChild(0).forward, transform.GetChild(0).rotation);
-        tornado.GetComponent<tornadoAttack>()._playerBeh = this;
-        tornado.GetComponent<tornadoAttack>().moveTarget = transform.position + transform.GetChild(0).forward * Globals.tornadoDistance;
-
-        GameObject tornadoEffect = Instantiate(tornadoEffects[0], new Vector3(tornado.transform.position.x, 1, tornado.transform.position.z), transform.GetChild(0).rotation);
-        tornadoEffect.transform.parent = tornado.transform;
-
-
-        yield return new WaitForSeconds(2f);
-        _skillManager.skillSelect();
-        Globals.isGameActive = true;
-        attacking = true;
-    }
-    #endregion
-
-    #region assassin attack
-    public void assassinAttack(Transform _enemy)
-    {
-        Globals.isGameActive = false;
-        StartCoroutine(_attack(_enemy, 10));
-        //animator.SetTrigger("tornado");
-        _skillManager.assassinCooldown();
-        StartCoroutine(assassinAttacking());
-        transform.GetChild(0).GetChild(0).gameObject.SetActive(false);
-    }
-    public void assassinAttackAnimationEvent()
-    {
-
-    }
-    IEnumerator assassinAttacking()
-    {
-        GameObject assassin = Instantiate(assassinPrefab, transform.position + transform.GetChild(0).forward, transform.GetChild(0).rotation);
-        assassin.GetComponent<assassinAttack>()._playerBeh = this;
-        for(int i = 0; i< Globals.assassinAmount; i++)
-        {
-            assassin.GetComponent<assassinAttack>().enemies.Add(enemies[i]);
-            if (i == enemies.Count - 1)
-            {
-                break;
-            }
-
-        }
-        //assassin.GetComponent<assassinAttack>().moveTarget = transform.position + transform.GetChild(0).forward * Globals.tornadoDistance;
-
-        GameObject assassinEffect = Instantiate(assassinEffects[0], new Vector3(assassin.transform.position.x, 1, assassin.transform.position.z), transform.GetChild(0).rotation);
-        assassinEffect.transform.parent = assassin.transform;
-        assassinEffect.transform.localPosition = new Vector3(0, 2, 0);
-
-        yield return new WaitForSeconds(2f);
-        //_skillManager.skillSelect();
-        //Globals.isGameActive = true;
-        //attacking = true;
-    }
-    #endregion
-    public void activeCharacter()
-    {
-        transform.GetChild(0).GetChild(0).gameObject.SetActive(true);
-
-        _skillManager.skillSelect();
-        Globals.isGameActive = true;
-        attacking = true;
-    }
     #region stomp attack
     public void stompAttack(Transform _enemy)
     {
@@ -296,7 +218,7 @@ public class playerBehaviour : MonoBehaviour
     {
         GameObject stomp0 = Instantiate(stompAreaPrefab, transform.position + transform.GetChild(0).forward * Random.Range(-20f, 20f) + new Vector3(Random.Range(-10f, 10f), 0, Random.Range(-10f, 10f)), Quaternion.identity);
         stomp0.GetComponent<stompAttack>()._playerBeh = this;
-     GameObject lighting1=   Instantiate(lightingEffects[Random.Range(0, lightingEffects.Count)], new Vector3(stomp0.transform.position.x, 33, stomp0.transform.position.z), Quaternion.identity);
+        GameObject lighting1 = Instantiate(lightingEffects[Random.Range(0, lightingEffects.Count)], new Vector3(stomp0.transform.position.x, 33, stomp0.transform.position.z), Quaternion.identity);
         Destroy(lighting1, 2);
         //yield return new WaitForSeconds(0.2f);
 
@@ -328,46 +250,6 @@ public class playerBehaviour : MonoBehaviour
     }
     #endregion
 
-    #region meteor attack
-    public void meteorAttack(Transform _enemy)
-    {
-        //Globals.isGameActive = false;
-        StartCoroutine(_attack(_enemy, 1));
-        //animator.SetTrigger("stomp");
-        meteorAttackAnimationEvent();
-
-    }
-    public void meteorAttackAnimationEvent()
-    {
-        _skillManager.meteorCooldown();
-        StartCoroutine(_meteorAttacking());
-    }
-    IEnumerator _meteorAttacking()
-    {
-       
-        _skillManager.skillSelect();
-        //currentAttack = States.normalAttack;
-        Globals.isGameActive = true;
-        attacking = true;
-        for (int i = 0; i < 10; i++)
-        {
-            StartCoroutine(meteorAttacking());
-            yield return new WaitForSeconds(0.5f);
-        }
-    }
-    IEnumerator meteorAttacking()
-    {
-        Vector3 pos = transform.position + transform.GetChild(0).forward * Random.Range(0, 20f) + new Vector3(Random.Range(-10f, 10f), 0, Random.Range(-10f, 10f));
-     
-        GameObject meteorEffect = Instantiate(meteorEffects[0], pos, Quaternion.identity);
-        Destroy(meteorEffect, 2.5f);
-        yield return new WaitForSeconds(2f);
-        GameObject meteor = Instantiate(meteorAreaPrefab, pos, Quaternion.identity);
-        meteor.GetComponent<meteorAttack>()._playerBeh = this;
-
-
-    }
-    #endregion
     #region spin attack
     public void spinAttack(Transform _enemy)
     {
@@ -383,7 +265,7 @@ public class playerBehaviour : MonoBehaviour
         Debug.Log("spin");
         int enemyAmont = enemies.Count;
         float counter = 0f;
-        while(counter < Globals.spinTime)
+        while (counter < Globals.spinTime)
         {
             counter += 0.5f;
             enemyAmont = enemies.Count;
@@ -420,10 +302,130 @@ public class playerBehaviour : MonoBehaviour
         //_skillManager.spinCooldown();
         //StartCoroutine(spinHitEnemy());
 
-  
+
     }
 
     #endregion
+    #region assassin attack
+    public void assassinAttack(Transform _enemy)
+    {
+        Globals.isGameActive = false;
+        StartCoroutine(_attack(_enemy, 10));
+        //animator.SetTrigger("tornado");
+        _skillManager.assassinCooldown();
+        StartCoroutine(assassinAttacking());
+        transform.GetChild(0).GetChild(0).gameObject.SetActive(false);
+    }
+    public void assassinAttackAnimationEvent()
+    {
+
+    }
+    IEnumerator assassinAttacking()
+    {
+        GameObject assassin = Instantiate(assassinPrefab, transform.position + transform.GetChild(0).forward, transform.GetChild(0).rotation);
+        assassin.GetComponent<assassinAttack>()._playerBeh = this;
+        for (int i = 0; i < Globals.assassinAmount; i++)
+        {
+            assassin.GetComponent<assassinAttack>().enemies.Add(enemies[i]);
+            if (i == enemies.Count - 1)
+            {
+                break;
+            }
+
+        }
+        //assassin.GetComponent<assassinAttack>().moveTarget = transform.position + transform.GetChild(0).forward * Globals.tornadoDistance;
+
+        GameObject assassinEffect = Instantiate(assassinEffects[0], new Vector3(assassin.transform.position.x, 1, assassin.transform.position.z), transform.GetChild(0).rotation);
+        assassinEffect.transform.parent = assassin.transform;
+        assassinEffect.transform.localPosition = new Vector3(0, 2, 0);
+
+        yield return new WaitForSeconds(2f);
+        //_skillManager.skillSelect();
+        //Globals.isGameActive = true;
+        //attacking = true;
+    }
+    #endregion
+    #region meteor attack
+    public void meteorAttack(Transform _enemy)
+    {
+        //Globals.isGameActive = false;
+        StartCoroutine(_attack(_enemy, 1));
+        //animator.SetTrigger("stomp");
+        meteorAttackAnimationEvent();
+
+    }
+    public void meteorAttackAnimationEvent()
+    {
+        _skillManager.meteorCooldown();
+        StartCoroutine(_meteorAttacking());
+    }
+    IEnumerator _meteorAttacking()
+    {
+
+        _skillManager.skillSelect();
+        //currentAttack = States.normalAttack;
+        Globals.isGameActive = true;
+        attacking = true;
+        for (int i = 0; i < 10; i++)
+        {
+            StartCoroutine(meteorAttacking());
+            yield return new WaitForSeconds(0.5f);
+        }
+    }
+    IEnumerator meteorAttacking()
+    {
+        Vector3 pos = transform.position + transform.GetChild(0).forward * Random.Range(0, 20f) + new Vector3(Random.Range(-10f, 10f), 0, Random.Range(-10f, 10f));
+
+        GameObject meteorEffect = Instantiate(meteorEffects[0], pos, Quaternion.identity);
+        Destroy(meteorEffect, 2.5f);
+        yield return new WaitForSeconds(2f);
+        GameObject meteor = Instantiate(meteorAreaPrefab, pos, Quaternion.identity);
+        meteor.GetComponent<meteorAttack>()._playerBeh = this;
+
+
+    }
+    #endregion
+
+    #region tornado attack
+    public void tornadoAttack(Transform _enemy)
+    {
+        Globals.isGameActive = false;
+        StartCoroutine(_attack(_enemy, 10));
+        animator.SetTrigger("tornado");
+
+ 
+    }
+    public void tornadoAttackAnimationEvent()
+    {
+        _skillManager.tornadoCooldown();
+        StartCoroutine(tornadoAttacking());
+    }
+    IEnumerator tornadoAttacking()
+    {
+        GameObject tornado = Instantiate(tornadoPrefab, transform.position + transform.GetChild(0).forward, transform.GetChild(0).rotation);
+        tornado.GetComponent<tornadoAttack>()._playerBeh = this;
+        tornado.GetComponent<tornadoAttack>().moveTarget = transform.position + transform.GetChild(0).forward * Globals.tornadoDistance;
+
+        GameObject tornadoEffect = Instantiate(tornadoEffects[0], new Vector3(tornado.transform.position.x, 1, tornado.transform.position.z), transform.GetChild(0).rotation);
+        tornadoEffect.transform.parent = tornado.transform;
+
+
+        yield return new WaitForSeconds(2f);
+        _skillManager.skillSelect();
+        Globals.isGameActive = true;
+        attacking = true;
+    }
+    #endregion
+
+    public void activeCharacter()
+    {
+        transform.GetChild(0).GetChild(0).gameObject.SetActive(true);
+
+        _skillManager.skillSelect();
+        Globals.isGameActive = true;
+        attacking = true;
+    }
+
     IEnumerator _attack(Transform _enemy,float affectTime)
     {
         float counter = 0f;

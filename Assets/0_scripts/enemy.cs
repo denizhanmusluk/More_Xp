@@ -36,8 +36,7 @@ public class enemy : MonoBehaviour
                 {
                     if (Globals.isGameActive)
                     {
-                        agent.SetDestination(player.transform.position);
-                        _animator.SetBool("run", true);
+                        following();
                     }
                 }
                 break;
@@ -48,7 +47,7 @@ public class enemy : MonoBehaviour
                 break;
             case States.attack:
                 {
-
+                    _attack();
                 }
                 break;
         }
@@ -67,6 +66,30 @@ public class enemy : MonoBehaviour
             GameManager.Instance.MoneyUpdate(earnMoney);
 
             Destroy(gameObject, 2f);
+        }
+    }
+    void following()
+    {
+        if (Vector3.Distance(player.transform.position, transform.position) > 4f)
+        {
+            agent.SetDestination(player.transform.position);
+            _animator.SetBool("run", true);
+        }
+        else
+        {
+            currentBehaviour = States.attack;
+        }
+    }
+    void _attack()
+    {
+        if (Vector3.Distance(player.transform.position, transform.position) < 4f)
+        {
+            agent.SetDestination(transform.position);
+            _animator.SetBool("attack", true);
+        }
+        else
+        {
+            currentBehaviour = States.followPlayer;
         }
     }
     //private void OnTriggerEnter(Collider other)
