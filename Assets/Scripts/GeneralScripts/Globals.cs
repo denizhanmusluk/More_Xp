@@ -49,6 +49,7 @@ public static class Globals
     // sowrd 
     public static int swordLevel = 0;
     public static int swordDamage = 1;
+    public static float swordAttackSpeed = 1;
 
     // assasin
     public static int assassinLevel = 0;

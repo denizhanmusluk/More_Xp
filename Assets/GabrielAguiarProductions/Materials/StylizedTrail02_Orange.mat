@@ -48,15 +48,12 @@ Material:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
-    m_Ints: []
     m_Floats:
     - _AlphaClip: 0.05
     - _DissolveScale: 35
-    - _QueueControl: 0
-    - _QueueOffset: 0
     m_Colors:
-    - _Color01: {r: 9.734288, g: 2.5539887, b: 1.0192969, a: 1}
-    - _Color02: {r: 0.93333334, g: 0.10196078, b: 0.14392678, a: 1}
-    - _DissolveSpeed: {r: -1, g: 0, b: 0, a: 0}
-    - _MainTexSpeed: {r: -0.5, g: 0, b: 0, a: 0}
+    - _Color01: {r: 0.9433962, g: 0.09344962, b: 0.1855699, a: 1}
+    - _Color02: {r: 0.1278427, g: 0.1013261, b: 0.9339623, a: 1}
+    - _DissolveSpeed: {r: -0.5, g: 0, b: 0, a: 0}
+    - _MainTexSpeed: {r: -0.1, g: 0, b: 0, a: 0}
   m_BuildTextureStacks: []

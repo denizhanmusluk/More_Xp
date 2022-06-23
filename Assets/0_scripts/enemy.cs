@@ -3,19 +3,25 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 
-public class enemy : MonoBehaviour
+public class enemy : MonoBehaviour,ILoseObserver
 {
+    public int Health;
     [SerializeField] int earnMoney;
+    [SerializeField] GameObject coinPrefab;
+    [SerializeField] int coinCount;
+    [SerializeField] float attackSpeed;
+    [SerializeField] int damage;
     public GameObject player;
-    public enum States { idle, followPlayer, death, attack }
+    public enum States { idle, followPlayer, death, attack,failPlayer}
     public States currentBehaviour;
 
     public NavMeshAgent agent;
     Animator _animator;
     public enemyCreator _enemyCreator;
-    public int Health;
+    bool attackActive = true;
     void Start()
     {
+      GameManager.Instance.Add_LoseObserver(this);
         agent = GetComponent<NavMeshAgent>();
         _animator = GetComponent<Animator>();
 
@@ -49,6 +55,11 @@ public class enemy : MonoBehaviour
                 {
                     _attack();
                 }
+                break;    
+            case States.failPlayer:
+                {
+
+                }
                 break;
         }
     }
@@ -62,9 +73,12 @@ public class enemy : MonoBehaviour
             agent.enabled = false;
             _enemyCreator.enemyAll.Remove(gameObject);
             player.transform.parent.GetComponent<playerBehaviour>().enemies.Remove(this.gameObject);
-            GetComponent<Ragdoll>().RagdollActivateWithForce(true, 0.35f * (forceDirection + new Vector3(0, 0.5f, 0)));
-            GameManager.Instance.MoneyUpdate(earnMoney);
-
+            GetComponent<Ragdoll>().RagdollActivateWithForce(true, 0.35f * forceDirection);
+            for (int i = 0; i < coinCount; i++)
+            {
+              GameObject coins =  Instantiate(coinPrefab, transform.position + new Vector3(Random.Range(-0.5f, 0.5f), 7, Random.Range(-0.5f, 0.5f)), Quaternion.identity);
+                coins.GetComponent<coin>().moneyAmount = earnMoney;
+            }
             Destroy(gameObject, 2f);
         }
     }
@@ -86,11 +100,22 @@ public class enemy : MonoBehaviour
         {
             agent.SetDestination(transform.position);
             _animator.SetBool("attack", true);
+            if (attackActive)
+            {
+                StartCoroutine(attackHit());
+            }
         }
         else
         {
             currentBehaviour = States.followPlayer;
         }
+    }
+    IEnumerator attackHit()
+    {
+        player.transform.parent.GetComponent<playerHealth>().characterDamage(damage);
+        attackActive = false;
+        yield return new WaitForSeconds(1f / attackSpeed);
+        attackActive = true;
     }
     //private void OnTriggerEnter(Collider other)
     //{
@@ -107,4 +132,10 @@ public class enemy : MonoBehaviour
     //        currentBehaviour = States.idle;
     //    }
     //}
+    public void LoseScenario()
+    {
+        GameManager.Instance.Remove_LoseObserver(this);
+        currentBehaviour = States.failPlayer;
+
+    }
 }

@@ -10,15 +10,7 @@ public class sword : MonoBehaviour
         if(collision.transform.root.GetComponent<enemy>() != null)
         {
             Vector3 forcDir = (collision.transform.position - transform.position).normalized;
-            collision.transform.GetComponent<Rigidbody>().AddForce(new Vector3(0,1,0) * 10000);
-        }
-    }
-    private void OnTriggerEnter(Collider other)
-    {
-        if (other.transform.root.GetComponent<enemy>() != null)
-        {
-            Vector3 forcDir = (other.transform.position - transform.position).normalized;
-            other.transform.GetComponent<Rigidbody>().AddForce(forcDir * 5000);
+            collision.transform.GetComponent<Rigidbody>().AddForce(new Vector3( forcDir.x , -1 , forcDir.z )* 2000);
         }
     }
 }

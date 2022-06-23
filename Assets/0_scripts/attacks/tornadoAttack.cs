@@ -22,9 +22,9 @@ public class tornadoAttack : MonoBehaviour
             yield return null;
         }
 
-        while (Vector3.Distance(transform.position, _playerBeh.transform.position) > 0.5f)
+        while (Vector3.Distance(transform.position, _playerBeh.transform.position) > 2f)
         {
-            transform.position = Vector3.Lerp(transform.position, _playerBeh.transform.position, 4 * Time.deltaTime);
+            transform.position = Vector3.Lerp(transform.position, _playerBeh.transform.position, 6 * Time.deltaTime);
             yield return null;
         }
         Destroy(gameObject, 0.1f);
@@ -33,7 +33,7 @@ public class tornadoAttack : MonoBehaviour
     {
         if (other.transform.GetComponent<enemy>() != null)
         {
-            other.GetComponent<enemy>().dead(Globals.tornadoDamage, transform.up * Globals.tornadoForce + (other.transform.position - transform.position).normalized);
+            other.GetComponent<enemy>().dead(Globals.tornadoDamage, transform.up *(1 + Globals.tornadoLevel/5) + (other.transform.position - transform.position).normalized);
             //Vector3 forceDirection = (other.transform.position - transform.position).normalized;
             //other.GetComponent<Ragdoll>().RagdollActivateWithForce(true, 0.35f * (forceDirection + new Vector3(0, 1f, 0)));
             //_playerBeh.enemies.Remove(other.gameObject);
