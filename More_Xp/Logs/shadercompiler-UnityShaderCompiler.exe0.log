@@ -1,21 +1,4 @@
 Base path: 'C:/Program Files/Unity/Hub/Editor/2020.3.27f1/Editor/Data', plugins path 'C:/Program Files/Unity/Hub/Editor/2020.3.27f1/Editor/Data/PlaybackEngines'
 Cmd: initializeCompiler
 
-Cmd: compileComputeKernel
-  insize=6689 file=C:/GitHub/More_Xp/More_Xp/Assets/GabrielAguiarProductions/Prefabs/VFXGrahps/vfxgraph_TornadoAnticipation_v1.vfx kernel=CSMain cachingPP=1 ppOnly=0 stripLineD=0 buildPlatform=9 km=<UNITY_VERSION=202039> pKW=UNITY_NO_DXT5nm UNITY_ENABLE_REFLECTION_BUFFERS UNITY_NO_SCREENSPACE_SHADOWS UNITY_PBS_USE_BRDF2 UNITY_LIGHTMAP_DLDR_ENCODING uKW=SHADER_STAGE_COMPUTE platform=d3d11 flags=0 ok=1 outsize=1671
-
-Cmd: compileComputeKernel
-  insize=6677 file=C:/GitHub/More_Xp/More_Xp/Assets/GabrielAguiarProductions/Prefabs/VFXGrahps/vfxgraph_TornadoAnticipation_v1.vfx kernel=CSMain cachingPP=1 ppOnly=0 stripLineD=0 buildPlatform=9 km=<UNITY_VERSION=202039> pKW=UNITY_NO_DXT5nm UNITY_ENABLE_REFLECTION_BUFFERS UNITY_NO_SCREENSPACE_SHADOWS UNITY_PBS_USE_BRDF2 UNITY_LIGHTMAP_DLDR_ENCODING uKW=SHADER_STAGE_COMPUTE platform=d3d11 flags=0 ok=1 outsize=1675
-
-Cmd: compileComputeKernel
-  insize=6496 file=C:/GitHub/More_Xp/More_Xp/Assets/GabrielAguiarProductions/Prefabs/VFXGrahps/vfxgraph_TornadoAnticipation_v1.vfx kernel=CSMain cachingPP=1 ppOnly=0 stripLineD=0 buildPlatform=9 km=<UNITY_VERSION=202039> pKW=UNITY_NO_DXT5nm UNITY_ENABLE_REFLECTION_BUFFERS UNITY_NO_SCREENSPACE_SHADOWS UNITY_PBS_USE_BRDF2 UNITY_LIGHTMAP_DLDR_ENCODING uKW=SHADER_STAGE_COMPUTE platform=d3d11 flags=0 ok=1 outsize=1031
-
-Cmd: compileComputeKernel
-  insize=6547 file=C:/GitHub/More_Xp/More_Xp/Assets/GabrielAguiarProductions/Prefabs/VFXGrahps/vfxgraph_Tornado_v1.vfx kernel=CSMain cachingPP=1 ppOnly=0 stripLineD=0 buildPlatform=9 km=<UNITY_VERSION=202039> pKW=UNITY_NO_DXT5nm UNITY_ENABLE_REFLECTION_BUFFERS UNITY_NO_SCREENSPACE_SHADOWS UNITY_PBS_USE_BRDF2 UNITY_LIGHTMAP_DLDR_ENCODING uKW=SHADER_STAGE_COMPUTE platform=d3d11 flags=0 ok=1 outsize=1141
-
-Cmd: compileComputeKernel
-  insize=8919 file=C:/GitHub/More_Xp/More_Xp/Assets/GabrielAguiarProductions/Prefabs/VFXGrahps/vfxgraph_Tornado_v1.vfx kernel=CSMain cachingPP=1 ppOnly=0 stripLineD=0 buildPlatform=9 km=<UNITY_VERSION=202039> pKW=UNITY_NO_DXT5nm UNITY_ENABLE_REFLECTION_BUFFERS UNITY_NO_SCREENSPACE_SHADOWS UNITY_PBS_USE_BRDF2 UNITY_LIGHTMAP_DLDR_ENCODING uKW=SHADER_STAGE_COMPUTE platform=d3d11 flags=0 ok=1 outsize=3408
-
-Cmd: compileComputeKernel
-  insize=7359 file=C:/GitHub/More_Xp/More_Xp/Assets/GabrielAguiarProductions/Prefabs/vfxgraph_Lightning01.vfx kernel=CSMain cachingPP=1 ppOnly=0 stripLineD=0 buildPlatform=9 km=<UNITY_VERSION=202039> pKW=UNITY_NO_DXT5nm UNITY_ENABLE_REFLECTION_BUFFERS UNITY_NO_SCREENSPACE_SHADOWS UNITY_PBS_USE_BRDF2 UNITY_LIGHTMAP_DLDR_ENCODING uKW=SHADER_STAGE_COMPUTE platform=d3d11 flags=0 ok=1 outsize=2473
-
+Cmd: shutdown
