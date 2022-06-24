@@ -10,7 +10,6 @@ public class tornadoAttack : MonoBehaviour
     void Start()
     {
         //Destroy(gameObject.GetComponent<Collider>(), 2);
-        //Destroy(gameObject, 5);
         StartCoroutine(forwardMove());
     }
     IEnumerator forwardMove()
@@ -21,6 +20,7 @@ public class tornadoAttack : MonoBehaviour
             transform.position = Vector3.Lerp(transform.position, moveTarget, 3 * Time.deltaTime);
             yield return null;
         }
+        Destroy(gameObject, 1);
 
         while (Vector3.Distance(transform.position, _playerBeh.transform.position) > 2f)
         {

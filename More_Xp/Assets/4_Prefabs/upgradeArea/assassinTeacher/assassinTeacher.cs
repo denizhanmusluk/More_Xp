@@ -7,9 +7,14 @@ public class assassinTeacher : MonoBehaviour
     [SerializeField] GameObject[] assassinEffect;
     [SerializeField] Transform[] assassinPoints;
     int counter = 0;
-
+    [SerializeField] SkinnedMeshRenderer skin;
+    Material mat;
+    int[] rgb = { 255, 0, 0 };
+    int counterRGB = 0;
     void Start()
     {
+        mat = skin.material;
+        StartCoroutine(setColor());
         StartCoroutine(assassinAnimation());
     }
     IEnumerator assassinAnimation()
@@ -49,5 +54,37 @@ public class assassinTeacher : MonoBehaviour
         transform.GetChild(0).gameObject.SetActive(true);
         transform.GetChild(1).gameObject.SetActive(true);
         Destroy(_assassin, 0.2f);
+    }
+    IEnumerator setColor()
+    {
+        while (true)
+        {
+            for(int i = 0; i < 3; i++)
+            {
+                counterRGB = 0;
+                while (counterRGB<255)
+                {
+                    counterRGB += 1;
+                    int val = (i + 1) % 3;
+                    rgb[val] = counterRGB;
+                    mat.color = new Color32((byte)rgb[0], (byte)rgb[1], (byte)rgb[2], 255);
+                    Debug.Log(rgb[0] +"  " + (byte)rgb[1] + "   " + (byte)rgb[2]);
+                    yield return null;
+                }
+                counterRGB = 255;
+                while (counterRGB > 0)
+                {
+                    counterRGB -= 1;
+                    int val = (i) % 3;
+                    rgb[val] = counterRGB;
+                    mat.color = new Color32((byte)rgb[0], (byte)rgb[1], (byte)rgb[2], 255);
+                    Debug.Log(rgb[0] + "  " + (byte)rgb[1] + "   " + (byte)rgb[2]);
+
+                    yield return null;
+                }
+                counterRGB = 0;
+            }
+            yield return null;
+        }
     }
 }
