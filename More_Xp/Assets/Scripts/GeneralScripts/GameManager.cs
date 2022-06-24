@@ -63,7 +63,7 @@ public class GameManager : MonoBehaviour, IWinObserver, ILoseObserver
 
 
 
-        //Globals.moneyAmount = PlayerPrefs.GetInt("money");
+        Globals.moneyAmount = PlayerPrefs.GetInt("money");
         moneyPanel.enabled = true;
 
 
