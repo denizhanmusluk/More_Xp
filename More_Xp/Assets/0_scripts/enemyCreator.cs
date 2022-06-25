@@ -11,6 +11,7 @@ public class enemyCreator : MonoBehaviour,IStartGameObserver
 
 
     [SerializeField] int maxEnemyCount;
+    [SerializeField] bool creating;
     void Start()
     {
         GameManager.Instance.Add_StartObserver(this);
@@ -18,8 +19,14 @@ public class enemyCreator : MonoBehaviour,IStartGameObserver
     }
     public void StartGame()
     {
+        if (creating)
+        {
+            StartCoroutine(spawning());
+        }
+    }
+    public void spawn()
+    {
         StartCoroutine(spawning());
-
     }
     IEnumerator spawning()
     {
@@ -38,7 +45,7 @@ public class enemyCreator : MonoBehaviour,IStartGameObserver
             {
                 enemySpawn();
             }
-            yield return new WaitForSeconds(1f);
+            yield return new WaitForSeconds(0.3f);
         }
     }
     void enemySpawn()
@@ -49,10 +56,12 @@ public class enemyCreator : MonoBehaviour,IStartGameObserver
         //{
         //    spawnPointSelect = new Vector3(Random.Range(-40f, 40f), 0, Random.Range(-40f, 40f));
         //}
-        while ((Camera.main.WorldToScreenPoint(spawnPointSelect).x < Screen.width && Camera.main.WorldToScreenPoint(spawnPointSelect).x > 0) && (Camera.main.WorldToScreenPoint(spawnPointSelect).y < Screen.height && Camera.main.WorldToScreenPoint(spawnPointSelect).y > 0))
-        {
-            spawnPointSelect = new Vector3(Random.Range(-35f, 35f), 0, Random.Range(-35f, 35f));
-        }
+
+
+        //while ((Camera.main.WorldToScreenPoint(spawnPointSelect).x < Screen.width && Camera.main.WorldToScreenPoint(spawnPointSelect).x > 0) && (Camera.main.WorldToScreenPoint(spawnPointSelect).y < Screen.height && Camera.main.WorldToScreenPoint(spawnPointSelect).y > 0))
+        //{
+        //    spawnPointSelect = new Vector3(Random.Range(-35f, 35f), 0, Random.Range(-35f, 35f));
+        //}
 
         if (player.GetComponent<playerControl>().players.Count > 0 && Globals.isGameActive)
         {

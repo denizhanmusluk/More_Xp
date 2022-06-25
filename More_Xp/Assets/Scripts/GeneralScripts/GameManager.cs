@@ -63,7 +63,7 @@ public class GameManager : MonoBehaviour, IWinObserver, ILoseObserver
 
 
 
-        Globals.moneyAmount = PlayerPrefs.GetInt("money");
+        //Globals.moneyAmount = PlayerPrefs.GetInt("money");
         moneyPanel.enabled = true;
 
 
@@ -175,28 +175,12 @@ public class GameManager : MonoBehaviour, IWinObserver, ILoseObserver
     public void failLevelbutton()
     {
         PlayerPrefs.SetInt("levelIndex", Globals.currentLevel);
-        
-
-
-
         PlayerPrefs.SetInt("level", Globals.currentLevelIndex);
-        //StartCoroutine(levelLoad());
+        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
 
-        Destroy(lvlManager.loadedLevel);
-
-        lvlManager.levelLoad();
-
-
-
-        //Start();
-
-        Notify_GameStartObservers();
-
-
-        //Start();
         //Destroy(lvlManager.loadedLevel);
         //lvlManager.levelLoad();
-        //Globals.isGameActive = true;
+        //Notify_GameStartObservers();
     }
     IEnumerator levelLoad()
     {

@@ -18,7 +18,7 @@ public class islandBuy : MonoBehaviour
     [SerializeField] string currentCost;
     [SerializeField] string islandName;
     float counterTime = 0;
-
+    [SerializeField] enemyCreator enemyCreat;
     void Start()
     {
 
@@ -59,7 +59,7 @@ public class islandBuy : MonoBehaviour
     {
         if (other.tag == "Player")
         {
-            if (Globals.moneyAmount > 49 )
+            if (Globals.moneyAmount > (cost / 50) - 1)
             {
                 if (sellActive && isbuy)
                 {
@@ -72,10 +72,10 @@ public class islandBuy : MonoBehaviour
     IEnumerator buy()
     {
         isbuy = false;
-        currentAmount -= 50;
+        currentAmount -= cost/50;
         outline.fillAmount = 1 - (float)currentAmount / (float)cost;
         costText.text = currentAmount.ToString();
-        GameManager.Instance.MoneyUpdate(-50);
+        GameManager.Instance.MoneyUpdate(-cost / 50);
         PlayerPrefs.SetInt(currentCost, currentAmount);
         if (currentAmount == 0)
         {
@@ -100,5 +100,6 @@ public class islandBuy : MonoBehaviour
         PlayerPrefs.SetInt(islandName, 1);
         obstacle.SetActive(false);
         canvas.SetActive(false);
+        enemyCreat.spawn();
     }
 }

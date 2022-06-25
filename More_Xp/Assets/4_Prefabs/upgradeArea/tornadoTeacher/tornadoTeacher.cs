@@ -31,17 +31,13 @@ public class tornadoTeacher : MonoBehaviour
     }
     IEnumerator forwardMove(GameObject _tornado)
     {
-        yield return new WaitForSeconds(0.6f);
+        yield return new WaitForSeconds(0.65f);
         while (Vector3.Distance(_tornado.transform.position, targetPoint.position) > 1f)
         {
-            _tornado.transform.position = Vector3.Lerp(_tornado.transform.position, targetPoint.position, 2 * Time.deltaTime);
+            _tornado.transform.position = Vector3.Lerp(_tornado.transform.position, targetPoint.position, 3 * Time.deltaTime);
             yield return null;
         }
-        while (Vector3.Distance(_tornado.transform.position, transform.position) > 1f)
-        {
-            _tornado.transform.position = Vector3.Lerp(_tornado.transform.position, transform.position, 2 * Time.deltaTime);
-            yield return null;
-        }
-        Destroy(_tornado, 0.2f);
+    
+        Destroy(_tornado, 0.1f);
     }
 }

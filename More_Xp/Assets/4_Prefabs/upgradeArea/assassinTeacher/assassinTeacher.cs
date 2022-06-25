@@ -68,7 +68,6 @@ public class assassinTeacher : MonoBehaviour
                     int val = (i + 1) % 3;
                     rgb[val] = counterRGB;
                     mat.color = new Color32((byte)rgb[0], (byte)rgb[1], (byte)rgb[2], 255);
-                    Debug.Log(rgb[0] +"  " + (byte)rgb[1] + "   " + (byte)rgb[2]);
                     yield return null;
                 }
                 counterRGB = 255;
@@ -78,7 +77,6 @@ public class assassinTeacher : MonoBehaviour
                     int val = (i) % 3;
                     rgb[val] = counterRGB;
                     mat.color = new Color32((byte)rgb[0], (byte)rgb[1], (byte)rgb[2], 255);
-                    Debug.Log(rgb[0] + "  " + (byte)rgb[1] + "   " + (byte)rgb[2]);
 
                     yield return null;
                 }

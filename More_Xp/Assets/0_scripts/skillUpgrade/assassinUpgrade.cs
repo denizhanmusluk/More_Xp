@@ -7,6 +7,7 @@ using TapticPlugin;
 
 public class assassinUpgrade : MonoBehaviour
 {
+    [SerializeField] GameObject emptyTeacher, teacher;
     [SerializeField] GameObject buyIcon;
     [SerializeField] GameObject[] upgradeIcons;
     [SerializeField] GameObject assassinImage;
@@ -105,7 +106,7 @@ public class assassinUpgrade : MonoBehaviour
     {
         if (other.tag == "Player")
         {
-            if (Globals.moneyAmount > 49 && Globals.assassinLevel < cost.Length - 1)
+            if (Globals.moneyAmount > (cost[Globals.assassinLevel] / 50) - 1 && Globals.assassinLevel < cost.Length - 1)
             {
                 if (sellActive && isbuy)
                 {
@@ -126,10 +127,10 @@ public class assassinUpgrade : MonoBehaviour
     IEnumerator buy()
     {
         isbuy = false;
-        currentAmount -= 50;
+        currentAmount -= (cost[Globals.assassinLevel] / 50);
         outline.fillAmount = 1 - (float)currentAmount / (float)currentCost;
         costText.text = currentAmount.ToString();
-        GameManager.Instance.MoneyUpdate(-50);
+        GameManager.Instance.MoneyUpdate(-(cost[Globals.assassinLevel] / 50));
         PlayerPrefs.SetInt(currentCostSkill, currentAmount);
         if (currentAmount == 0)
         {
@@ -152,6 +153,8 @@ public class assassinUpgrade : MonoBehaviour
     }
     void assassinOpen()
     {
+        emptyTeacher.SetActive(false);
+        teacher.SetActive(true);
         assassinImage.SetActive(true);
         skillManager.Instance.assassinCooldown();
     }

@@ -7,6 +7,7 @@ using TapticPlugin;
 
 public class bashUpgrade : MonoBehaviour
 {
+    [SerializeField] GameObject emptyTeacher, teacher;
     [SerializeField] GameObject buyIcon;
     [SerializeField] GameObject[] upgradeIcons;
     [SerializeField] GameObject bashImage;
@@ -110,7 +111,7 @@ public class bashUpgrade : MonoBehaviour
     {
         if (other.tag == "Player")
         {
-            if (Globals.moneyAmount > 49 && Globals.bashLevel < cost.Length - 1)
+            if (Globals.moneyAmount > (cost[Globals.bashLevel] / 50) - 1 && Globals.bashLevel < cost.Length - 1)
             {
                 if (sellActive && isbuy)
                 {
@@ -131,10 +132,10 @@ public class bashUpgrade : MonoBehaviour
     IEnumerator buy()
     {
         isbuy = false;
-        currentAmount -= 50;
+        currentAmount -= cost[Globals.bashLevel]/50;
         outline.fillAmount = 1 - (float)currentAmount / (float)currentCost;
         costText.text = currentAmount.ToString();
-        GameManager.Instance.MoneyUpdate(-50);
+        GameManager.Instance.MoneyUpdate(-cost[Globals.bashLevel] / 50);
         PlayerPrefs.SetInt(currentCostSkill, currentAmount);
         if (currentAmount == 0)
         {
@@ -157,6 +158,8 @@ public class bashUpgrade : MonoBehaviour
     }
     void bashOpen()
     {
+        emptyTeacher.SetActive(false);
+        teacher.SetActive(true);
         bashImage.SetActive(true);
         skillManager.Instance.bashCooldown();
     }

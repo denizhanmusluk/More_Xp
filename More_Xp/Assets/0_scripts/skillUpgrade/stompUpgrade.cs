@@ -6,6 +6,7 @@ using TMPro;
 using TapticPlugin;
 public class stompUpgrade : MonoBehaviour
 {
+    [SerializeField] GameObject emptyTeacher, teacher;
     [SerializeField] GameObject buyIcon;
     [SerializeField] GameObject[] upgradeIcons;
     [SerializeField] GameObject lightningImage;
@@ -106,7 +107,7 @@ public class stompUpgrade : MonoBehaviour
     {
         if (other.tag == "Player")
         {
-            if (Globals.moneyAmount > 49 && Globals.stompLevel < cost.Length - 1)
+            if (Globals.moneyAmount > (cost[Globals.stompLevel] / 50) - 1 && Globals.stompLevel < cost.Length - 1)
             {
                 if (sellActive && isbuy)
                 {
@@ -127,10 +128,10 @@ public class stompUpgrade : MonoBehaviour
     IEnumerator buy()
     {
         isbuy = false;
-        currentAmount -= 50;
+        currentAmount -= (cost[Globals.stompLevel] / 50);
         outline.fillAmount = 1 - (float)currentAmount / (float)currentCost;
         costText.text = currentAmount.ToString();
-        GameManager.Instance.MoneyUpdate(-50);
+        GameManager.Instance.MoneyUpdate(-(cost[Globals.stompLevel] / 50));
         PlayerPrefs.SetInt(currentCostSkill, currentAmount);
         if (currentAmount == 0)
         {
@@ -153,6 +154,8 @@ public class stompUpgrade : MonoBehaviour
     }
     void stompOpen()
     {
+        emptyTeacher.SetActive(false);
+        teacher.SetActive(true);
         lightningImage.SetActive(true);
         skillManager.Instance.stompCooldown();
     }

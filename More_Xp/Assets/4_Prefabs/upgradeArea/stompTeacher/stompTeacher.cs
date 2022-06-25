@@ -14,7 +14,7 @@ public class stompTeacher : MonoBehaviour
     // Update is called once per frame
     public void stompSkill()
     {
-        GameObject lighting1 = Instantiate(stompEffect[Random.Range(0, stompEffect.Length)], new Vector3(effectPoint.transform.position.x, 33, effectPoint.transform.position.z), Quaternion.identity);
+        GameObject lighting1 = Instantiate(stompEffect[Random.Range(0, stompEffect.Length)], new Vector3(effectPoint.transform.position.x, 37, effectPoint.transform.position.z), Quaternion.identity);
         Destroy(lighting1, 2);
     }
 }

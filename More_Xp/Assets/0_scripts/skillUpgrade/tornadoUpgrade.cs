@@ -6,6 +6,7 @@ using TMPro;
 using TapticPlugin;
 public class tornadoUpgrade : MonoBehaviour
 {
+    [SerializeField] GameObject emptyTeacher, teacher;
     [SerializeField] GameObject buyIcon;
     [SerializeField] GameObject[] upgradeIcons;
     [SerializeField] GameObject tornadoImage;
@@ -104,7 +105,7 @@ public class tornadoUpgrade : MonoBehaviour
     {
         if (other.tag == "Player")
         {
-            if (Globals.moneyAmount > 49 && Globals.tornadoLevel < cost.Length - 1)
+            if (Globals.moneyAmount > (cost[Globals.tornadoLevel] / 50) - 1 && Globals.tornadoLevel < cost.Length - 1)
             {
                 if (sellActive && isbuy)
                 {
@@ -124,10 +125,10 @@ public class tornadoUpgrade : MonoBehaviour
     IEnumerator buy()
     {
         isbuy = false;
-        currentAmount -= 50;
+        currentAmount -= (cost[Globals.tornadoLevel] / 50);
         outline.fillAmount = 1 - (float)currentAmount / (float)currentCost;
         costText.text = currentAmount.ToString();
-        GameManager.Instance.MoneyUpdate(-50);
+        GameManager.Instance.MoneyUpdate(-(cost[Globals.tornadoLevel] / 50));
         PlayerPrefs.SetInt(currentCostSkill, currentAmount);
         if (currentAmount == 0)
         {
@@ -150,6 +151,8 @@ public class tornadoUpgrade : MonoBehaviour
     }
     void tornadoOpen()
     {
+        emptyTeacher.SetActive(false);
+        teacher.SetActive(true);
         tornadoImage.SetActive(true);
         skillManager.Instance.tornadoCooldown();
     }

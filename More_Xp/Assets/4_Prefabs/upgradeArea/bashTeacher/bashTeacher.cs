@@ -10,7 +10,7 @@ public class bashTeacher : MonoBehaviour
 
     void Start()
     {
-        target= transform.position + transform.forward * 20;
+        target= transform.position + transform.forward * 25;
 
     }
 
@@ -25,7 +25,7 @@ public class bashTeacher : MonoBehaviour
     {
         while (Vector3.Distance(bash.transform.position, target) > 0.1f)
         {
-            bash.transform.position = Vector3.Lerp(bash.transform.position, target, 2 * Time.deltaTime);
+            bash.transform.position = Vector3.MoveTowards(bash.transform.position, target, 45 * Time.deltaTime);
             yield return null;
         }
     }

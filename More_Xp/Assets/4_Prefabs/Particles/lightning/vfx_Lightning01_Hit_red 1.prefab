@@ -138,6 +138,9 @@ VisualEffect:
       - m_Value: 0.8
         m_Name: LightningLifetime
         m_Overridden: 1
+      - m_Value: -9
+        m_Name: ImpactDistance
+        m_Overridden: 1
     m_Vector2f:
       m_Array: []
     m_Vector3f:

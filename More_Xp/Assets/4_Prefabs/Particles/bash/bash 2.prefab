@@ -421,38 +421,47 @@ VisualEffect:
       - m_Value: 2
         m_Name: SlashLifetime
         m_Overridden: 1
-      - m_Value: 3
+      - m_Value: 12
         m_Name: GroundFlamesSize
         m_Overridden: 1
-      - m_Value: 0.525
+      - m_Value: 2
         m_Name: ParticlesSize
         m_Overridden: 1
-      - m_Value: 3.3
+      - m_Value: 13
         m_Name: DebrisSize
         m_Overridden: 1
       - m_Value: 1.95
         m_Name: DebrisLifetime
         m_Overridden: 1
-      - m_Value: 0.75
+      - m_Value: 3
         m_Name: SideStonesDistanceFromCenter
         m_Overridden: 1
-      - m_Value: 3
+      - m_Value: 12
         m_Name: GroundCrackDarkSize
         m_Overridden: 1
-      - m_Value: 3
+      - m_Value: 12
         m_Name: SimpleDecalBrightSize
         m_Overridden: 1
       - m_Value: 2
         m_Name: SlashSissolveScale
         m_Overridden: 1
-      - m_Value: 0.8
+      - m_Value: 3.2
         m_Name: StaticFlamesSize
         m_Overridden: 1
-      - m_Value: 0.6
+      - m_Value: 2.4
         m_Name: FlyingFlamesSize
         m_Overridden: 1
       - m_Value: 0
         m_Name: SlashDissolveSpeed
+        m_Overridden: 1
+      - m_Value: 1.5
+        m_Name: SimpleDecalLifetime
+        m_Overridden: 1
+      - m_Value: 8
+        m_Name: SimpleDecalDarkSize
+        m_Overridden: 1
+      - m_Value: 4
+        m_Name: GroundCrackBrightSize
         m_Overridden: 1
     m_Vector2f:
       m_Array: []
@@ -461,7 +470,7 @@ VisualEffect:
       - m_Value: {x: 1, y: 1.2, z: 1}
         m_Name: SlashScale
         m_Overridden: 1
-      - m_Value: {x: 6, y: 9, z: 6}
+      - m_Value: {x: 24, y: 36, z: 24}
         m_Name: SideStonesScale
         m_Overridden: 1
     m_Vector4f:

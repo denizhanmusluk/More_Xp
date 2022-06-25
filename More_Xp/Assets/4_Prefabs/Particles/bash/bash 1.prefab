@@ -222,7 +222,7 @@ TrailRenderer:
   m_Time: 0.2
   m_Parameters:
     serializedVersion: 3
-    widthMultiplier: 0.6
+    widthMultiplier: 0.9
     widthCurve:
       serializedVersion: 2
       m_Curve:
@@ -318,7 +318,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4364861999203606394}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 13.19}
+  m_LocalPosition: {x: -0.98, y: 0, z: -8.9}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4364862000155842779}
@@ -424,22 +424,22 @@ VisualEffect:
       - m_Value: 3
         m_Name: GroundFlamesSize
         m_Overridden: 1
-      - m_Value: 0.525
+      - m_Value: 2
         m_Name: ParticlesSize
         m_Overridden: 1
-      - m_Value: 3.3
+      - m_Value: 13
         m_Name: DebrisSize
         m_Overridden: 1
       - m_Value: 1.95
         m_Name: DebrisLifetime
         m_Overridden: 1
-      - m_Value: 0.75
+      - m_Value: 3
         m_Name: SideStonesDistanceFromCenter
         m_Overridden: 1
-      - m_Value: 3
+      - m_Value: 12
         m_Name: GroundCrackDarkSize
         m_Overridden: 1
-      - m_Value: 3
+      - m_Value: 12
         m_Name: SimpleDecalBrightSize
         m_Overridden: 1
       - m_Value: 2
@@ -454,6 +454,18 @@ VisualEffect:
       - m_Value: 0
         m_Name: SlashDissolveSpeed
         m_Overridden: 1
+      - m_Value: 8
+        m_Name: SimpleDecalDarkSize
+        m_Overridden: 1
+      - m_Value: 4
+        m_Name: GroundCrackBrightSize
+        m_Overridden: 1
+      - m_Value: 2.4
+        m_Name: ParticlesLifetime
+        m_Overridden: 1
+      - m_Value: 1.5
+        m_Name: SimpleDecalLifetime
+        m_Overridden: 1
     m_Vector2f:
       m_Array: []
     m_Vector3f:
@@ -461,7 +473,7 @@ VisualEffect:
       - m_Value: {x: 1, y: 1.2, z: 1}
         m_Name: SlashScale
         m_Overridden: 1
-      - m_Value: {x: 6, y: 9, z: 6}
+      - m_Value: {x: 24, y: 36, z: 24}
         m_Name: SideStonesScale
         m_Overridden: 1
     m_Vector4f:
@@ -673,7 +685,7 @@ TrailRenderer:
   m_Time: 0.3
   m_Parameters:
     serializedVersion: 3
-    widthMultiplier: 0.8
+    widthMultiplier: 0.9
     widthCurve:
       serializedVersion: 2
       m_Curve:
@@ -819,7 +831,7 @@ TrailRenderer:
   m_Time: 0.6
   m_Parameters:
     serializedVersion: 3
-    widthMultiplier: 1
+    widthMultiplier: 0.9
     widthCurve:
       serializedVersion: 2
       m_Curve:
@@ -964,7 +976,7 @@ TrailRenderer:
   m_Time: 1
   m_Parameters:
     serializedVersion: 3
-    widthMultiplier: 1.4
+    widthMultiplier: 0.9
     widthCurve:
       serializedVersion: 2
       m_Curve:
@@ -1093,7 +1105,7 @@ TrailRenderer:
   m_Time: 0.8
   m_Parameters:
     serializedVersion: 3
-    widthMultiplier: 1.3
+    widthMultiplier: 0.9
     widthCurve:
       serializedVersion: 2
       m_Curve:
@@ -6084,7 +6096,7 @@ TrailRenderer:
   m_Time: 0.6
   m_Parameters:
     serializedVersion: 3
-    widthMultiplier: 1.1
+    widthMultiplier: 0.9
     widthCurve:
       serializedVersion: 2
       m_Curve:
@@ -6213,7 +6225,7 @@ TrailRenderer:
   m_Time: 0.2
   m_Parameters:
     serializedVersion: 3
-    widthMultiplier: 0.8
+    widthMultiplier: 0.9
     widthCurve:
       serializedVersion: 2
       m_Curve:

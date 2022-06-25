@@ -7,12 +7,9 @@ public class coin : MonoBehaviour
 {
     float motionSpeed = 20;
     Transform target;
-    GameObject particle;
     public int moneyAmount;
     void Start()
     {
-        particle = transform.GetChild(0).gameObject;
-        particle.SetActive(true);
         GetComponent<Rigidbody>().AddForce(new Vector3(Random.Range(-2f, 2f), 0.5f, Random.Range(-2f, 2f)) * 200);
         GetComponent<Rigidbody>().AddTorque(new Vector3(Random.Range(-2f, 2f), Random.Range(-2f, 2f), Random.Range(-2f, 2f)) * 1000);
         StartCoroutine(rotateCoin());
@@ -27,8 +24,6 @@ public class coin : MonoBehaviour
         transform.position = new Vector3(transform.position.x, 2, transform.position.z);
         yield return null;
         //particle.SetActive(true);
-        particle.transform.position -= new Vector3(0, 1, 0);
-        particle.transform.parent = null;
         while (true)
         {
             transform.Rotate(50 * Time.deltaTime, 200 * Time.deltaTime, 50 * Time.deltaTime);
@@ -38,7 +33,6 @@ public class coin : MonoBehaviour
 
     IEnumerator targetMotion()
     {
-        particle.SetActive(false);
 
         GetComponent<SphereCollider>().enabled = false;
         float counter = 0f;
@@ -71,7 +65,6 @@ public class coin : MonoBehaviour
         //target.GetComponent<playerHealth>().characterHealthUp(2);
         /////////////////
 
-        Destroy(particle);
 
         //target.GetComponent<PlayerParent>().playerYearSet(1);
         GameObject money = gameObject;

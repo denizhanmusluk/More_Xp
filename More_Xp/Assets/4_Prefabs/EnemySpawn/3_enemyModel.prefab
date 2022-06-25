@@ -337,7 +337,7 @@ CharacterJoint:
   m_Anchor: {x: 0, y: 0, z: 0}
   m_Axis: {x: 1, y: 0, z: 0}
   m_AutoConfigureConnectedAnchor: 1
-  m_ConnectedAnchor: {x: -0.05614912, y: 0.0037208935, z: 0.0105802175}
+  m_ConnectedAnchor: {x: -0.0561491, y: 0.0037208935, z: 0.0105802175}
   serializedVersion: 2
   m_SwingAxis: {x: 0, y: 0, z: -1}
   m_TwistLimitSpring:
@@ -1218,7 +1218,7 @@ CharacterJoint:
   m_Anchor: {x: 0, y: 0, z: 0}
   m_Axis: {x: -1, y: 0, z: 0}
   m_AutoConfigureConnectedAnchor: 1
-  m_ConnectedAnchor: {x: 0.084530234, y: 0.12712643, z: -0.007363501}
+  m_ConnectedAnchor: {x: 0.08453017, y: 0.12712643, z: -0.007363501}
   serializedVersion: 2
   m_SwingAxis: {x: 0, y: 0, z: 1}
   m_TwistLimitSpring:
@@ -1328,7 +1328,7 @@ CharacterJoint:
   m_Anchor: {x: 0, y: 0, z: 0}
   m_Axis: {x: 1, y: 0, z: 0}
   m_AutoConfigureConnectedAnchor: 1
-  m_ConnectedAnchor: {x: 0.05614913, y: 0.0037208935, z: 0.010580191}
+  m_ConnectedAnchor: {x: 0.056149106, y: 0.0037208935, z: 0.010580191}
   serializedVersion: 2
   m_SwingAxis: {x: 0, y: 0, z: -1}
   m_TwistLimitSpring:
@@ -1592,7 +1592,7 @@ CharacterJoint:
   m_Anchor: {x: 0, y: 0, z: 0}
   m_Axis: {x: 0, y: 0, z: 1}
   m_AutoConfigureConnectedAnchor: 1
-  m_ConnectedAnchor: {x: 0.00000009918587, y: 0.1340732, z: 0.000000029802322}
+  m_ConnectedAnchor: {x: 0.000000101514175, y: 0.13407314, z: 0.000000029802322}
   serializedVersion: 2
   m_SwingAxis: {x: -1, y: 0, z: 0}
   m_TwistLimitSpring:
@@ -2148,7 +2148,7 @@ CharacterJoint:
   m_Anchor: {x: 0, y: 0, z: 0}
   m_Axis: {x: 0, y: 0, z: 1}
   m_AutoConfigureConnectedAnchor: 1
-  m_ConnectedAnchor: {x: -0.00000014621766, y: 0.13407323, z: -0.000000026077032}
+  m_ConnectedAnchor: {x: -0.00000008707867, y: 0.1340732, z: -0.000000026077032}
   serializedVersion: 2
   m_SwingAxis: {x: 1, y: 0, z: 0}
   m_TwistLimitSpring:
@@ -2336,7 +2336,7 @@ Transform:
   m_GameObject: {fileID: 7658070415461158278}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 4.94, y: 0, z: 1.769}
-  m_LocalScale: {x: 5, y: 5, z: 5}
+  m_LocalScale: {x: 6.4, y: 6.4, z: 6.4}
   m_Children:
   - {fileID: 2623867155235801675}
   - {fileID: 6522120062194599808}
@@ -2374,6 +2374,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6f4441037ae37d540a6c60b5b11e4da2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  deadMat: {fileID: 2100000, guid: cdbd5b7b46de6a740a492e719020a9e9, type: 2}
+  mesh: {fileID: 7460063254153597959}
+  Health: 3
   earnMoney: 10
   coinPrefab: {fileID: 5083195112516652906, guid: b0a5dc3418d340040a9a3ec0cdef7722, type: 3}
   coinCount: 2
@@ -2383,7 +2386,6 @@ MonoBehaviour:
   currentBehaviour: 0
   agent: {fileID: 0}
   _enemyCreator: {fileID: 0}
-  Health: 3
 --- !u!136 &7658070415461158330
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -2407,9 +2409,9 @@ NavMeshAgent:
   m_GameObject: {fileID: 7658070415461158278}
   m_Enabled: 1
   m_AgentTypeID: 0
-  m_Radius: 0.5
-  m_Speed: 14
-  m_Acceleration: 8
+  m_Radius: 0.3
+  m_Speed: 10
+  m_Acceleration: 300
   avoidancePriority: 50
   m_AngularSpeed: 120
   m_StoppingDistance: 0
@@ -2586,7 +2588,7 @@ CharacterJoint:
   m_Anchor: {x: 0, y: 0, z: 0}
   m_Axis: {x: 1, y: 0, z: 0}
   m_AutoConfigureConnectedAnchor: 1
-  m_ConnectedAnchor: {x: -0.084530234, y: 0.12712643, z: -0.0073635085}
+  m_ConnectedAnchor: {x: -0.08453017, y: 0.12712643, z: -0.0073635085}
   serializedVersion: 2
   m_SwingAxis: {x: 0, y: 0, z: 1}
   m_TwistLimitSpring:
@@ -2854,7 +2856,7 @@ CharacterJoint:
   m_Anchor: {x: 0, y: 0, z: 0}
   m_Axis: {x: 1, y: 0, z: 0}
   m_AutoConfigureConnectedAnchor: 1
-  m_ConnectedAnchor: {x: -0.000000043772165, y: 0.17816529, z: 0.000000022351745}
+  m_ConnectedAnchor: {x: -0.0000000018626454, y: 0.17816521, z: 0.000000022351745}
   serializedVersion: 2
   m_SwingAxis: {x: 0, y: 0, z: -1}
   m_TwistLimitSpring:
@@ -3056,7 +3058,7 @@ CharacterJoint:
   m_Anchor: {x: 0, y: 0, z: 0}
   m_Axis: {x: 1, y: 0, z: 0}
   m_AutoConfigureConnectedAnchor: 1
-  m_ConnectedAnchor: {x: 0.000000006519259, y: 0.17816518, z: -0.000000029802303}
+  m_ConnectedAnchor: {x: -0.000000037252907, y: 0.17816518, z: 0}
   serializedVersion: 2
   m_SwingAxis: {x: 0, y: 0, z: -1}
   m_TwistLimitSpring:

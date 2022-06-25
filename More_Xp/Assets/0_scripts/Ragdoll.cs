@@ -62,6 +62,10 @@ public class Ragdoll : MonoBehaviour
         {
             GetComponent<SphereCollider>().enabled = !active;
         }
+        if (active)
+        {
+            StartCoroutine(rigidBodyKinematic());
+        }
     }
     public void RagdollActivateWithForce(bool active,Vector3 forceDir)
     {
@@ -72,7 +76,6 @@ public class Ragdoll : MonoBehaviour
             rigidb.detectCollisions = active;
             rigidb.isKinematic = !active;
             rigidb.AddForce(forceDir * 2500);
-            //rigidb.drag = 2;
         }
 
         //rest
@@ -89,8 +92,22 @@ public class Ragdoll : MonoBehaviour
         {
             capsuleCollider.enabled = !active;
         }
+        if (active)
+        {
+            StartCoroutine(rigidBodyKinematic());
+        }
         //Rigidbody.detectCollisions = !active;
         //Rigidbody.isKinematic = false;
         //capsuleCollider.enabled = !active;
+    }
+    IEnumerator rigidBodyKinematic()
+    {
+        yield return new WaitForSeconds(4f);
+        foreach (var rigidb in childrenRigidbody)
+        {
+            rigidb.detectCollisions = false;
+            rigidb.isKinematic = true;
+            //rigidb.drag = 10;
+        }
     }
 }

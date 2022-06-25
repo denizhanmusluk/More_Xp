@@ -49,7 +49,7 @@ VisualEffect:
   m_PropertySheet:
     m_Float:
       m_Array:
-      - m_Value: 1
+      - m_Value: 0.93
         m_Name: Rate
         m_Overridden: 1
       - m_Value: 6
@@ -70,7 +70,7 @@ VisualEffect:
       - m_Value: 0.9
         m_Name: SparksLifetime
         m_Overridden: 1
-      - m_Value: 0.6
+      - m_Value: 1.2
         m_Name: SparksSize
         m_Overridden: 1
       - m_Value: 0.8
@@ -82,19 +82,19 @@ VisualEffect:
       - m_Value: 1
         m_Name: Radius
         m_Overridden: 1
-      - m_Value: 2.5
+      - m_Value: 5
         m_Name: SmokeSize
         m_Overridden: 1
-      - m_Value: 3
+      - m_Value: 6
         m_Name: ImpactSize
         m_Overridden: 1
       - m_Value: 6
         m_Name: Lifetime
         m_Overridden: 1
-      - m_Value: 0.3
+      - m_Value: 0.6
         m_Name: TrailBackSize
         m_Overridden: 1
-      - m_Value: 0.15
+      - m_Value: 1
         m_Name: TrailFrontSize
         m_Overridden: 1
       - m_Value: 0.6
@@ -103,14 +103,17 @@ VisualEffect:
       - m_Value: 0.3
         m_Name: TrailFrontLifetime
         m_Overridden: 1
+      - m_Value: 10
+        m_Name: ImpactABSize
+        m_Overridden: 1
     m_Vector2f:
       m_Array: []
     m_Vector3f:
       m_Array:
-      - m_Value: {x: 0, y: 20, z: -10}
+      - m_Value: {x: 0, y: 80, z: -10}
         m_Name: InitialPosition
         m_Overridden: 1
-      - m_Value: {x: 0, y: -20, z: 10}
+      - m_Value: {x: 0, y: -80, z: 10}
         m_Name: Direction
         m_Overridden: 1
     m_Vector4f:

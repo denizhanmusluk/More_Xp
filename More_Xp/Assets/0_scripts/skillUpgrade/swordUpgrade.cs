@@ -7,6 +7,7 @@ using TapticPlugin;
 
 public class swordUpgrade : MonoBehaviour
 {
+
     //[SerializeField] GameObject buyIcon;
     [SerializeField] GameObject[] upgradeIcons;
     //[SerializeField] GameObject swordImage;
@@ -108,7 +109,7 @@ public class swordUpgrade : MonoBehaviour
     {
         if (other.tag == "Player")
         {
-            if (Globals.moneyAmount > 49 && Globals.swordLevel < cost.Length - 1)
+            if (Globals.moneyAmount > (cost[Globals.swordLevel] / 50) - 1 && Globals.swordLevel < cost.Length - 1)
             {
                 if (sellActive && isbuy)
                 {
@@ -129,10 +130,10 @@ public class swordUpgrade : MonoBehaviour
     IEnumerator buy()
     {
         isbuy = false;
-        currentAmount -= 50;
+        currentAmount -= (cost[Globals.swordLevel] / 50);
         outline.fillAmount = 1 - (float)currentAmount / (float)currentCost;
         costText.text = currentAmount.ToString();
-        GameManager.Instance.MoneyUpdate(-50);
+        GameManager.Instance.MoneyUpdate(-(cost[Globals.swordLevel] / 50));
         PlayerPrefs.SetInt(currentCostSkill, currentAmount);
         if (currentAmount == 0)
         {

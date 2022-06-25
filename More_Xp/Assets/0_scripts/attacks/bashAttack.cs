@@ -18,7 +18,7 @@ public class bashAttack : MonoBehaviour
     {
         while (Vector3.Distance(transform.position, moveTarget) >0.1f)
         {
-            transform.position = Vector3.Lerp(transform.position, moveTarget, 2 * Time.deltaTime);
+            transform.position = Vector3.MoveTowards(transform.position, moveTarget, 45 * Time.deltaTime);
                 yield return null;
         }
     }
@@ -26,7 +26,7 @@ public class bashAttack : MonoBehaviour
     {
         if (other.transform.GetComponent<enemy>() != null)
         {
-            other.GetComponent<enemy>().dead(Globals.bashDamage, transform.forward * Globals.bashForce + (other.transform.position - transform.position).normalized);
+            other.GetComponent<enemy>().dead(Globals.bashDamage, transform.forward + 4 * (other.transform.position - transform.position).normalized);
             //Vector3 forceDirection = (other.transform.position - transform.position).normalized;
             //other.GetComponent<Ragdoll>().RagdollActivateWithForce(true, 0.35f * (forceDirection + new Vector3(0, 1f, 0)));
             //_playerBeh.enemies.Remove(other.gameObject);

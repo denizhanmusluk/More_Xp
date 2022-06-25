@@ -14,7 +14,7 @@ public class meteorAttack : MonoBehaviour
     {
         if (other.transform.GetComponent<enemy>() != null)
         {
-            other.GetComponent<enemy>().dead(Globals.meteorDamage, (other.transform.position - transform.position).normalized);
+            other.GetComponent<enemy>().dead(Globals.meteorDamage, 3 * (other.transform.position - transform.position).normalized);
             //Vector3 forceDirection = (other.transform.position - transform.position).normalized;
             //other.GetComponent<Ragdoll>().RagdollActivateWithForce(true, 0.35f * (forceDirection + new Vector3(0, 1f, 0)));
             //_playerBeh.enemies.Remove(other.gameObject);

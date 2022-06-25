@@ -7,6 +7,7 @@ using TapticPlugin;
 
 public class spinUpgrade : MonoBehaviour
 {
+    [SerializeField] GameObject emptyTeacher, teacher;
     [SerializeField] GameObject buyIcon;
     [SerializeField] GameObject[] upgradeIcons;
     [SerializeField] GameObject spinImage;
@@ -106,7 +107,7 @@ public class spinUpgrade : MonoBehaviour
     {
         if (other.tag == "Player")
         {
-            if (Globals.moneyAmount > 49 && Globals.spinLevel < cost.Length - 1)
+            if (Globals.moneyAmount > (cost[Globals.spinLevel] / 50) - 1 && Globals.spinLevel < cost.Length - 1)
             {
                 if (sellActive && isbuy)
                 {
@@ -127,10 +128,10 @@ public class spinUpgrade : MonoBehaviour
     IEnumerator buy()
     {
         isbuy = false;
-        currentAmount -= 50;
+        currentAmount -= (cost[Globals.spinLevel] / 50);
         outline.fillAmount = 1 - (float)currentAmount / (float)currentCost;
         costText.text = currentAmount.ToString();
-        GameManager.Instance.MoneyUpdate(-50);
+        GameManager.Instance.MoneyUpdate(-(cost[Globals.spinLevel] / 50));
         PlayerPrefs.SetInt(currentCostSkill, currentAmount);
         if (currentAmount == 0)
         {
@@ -153,6 +154,8 @@ public class spinUpgrade : MonoBehaviour
     }
     void spinOpen()
     {
+        emptyTeacher.SetActive(false);
+        teacher.SetActive(true);
         spinImage.SetActive(true);
         skillManager.Instance.spinCooldown();
     }

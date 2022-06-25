@@ -5,6 +5,8 @@ using UnityEngine.AI;
 
 public class enemy : MonoBehaviour,ILoseObserver
 {
+    [SerializeField] Material deadMat;
+    [SerializeField] SkinnedMeshRenderer mesh;
     public int Health;
     [SerializeField] int earnMoney;
     [SerializeField] GameObject coinPrefab;
@@ -12,35 +14,109 @@ public class enemy : MonoBehaviour,ILoseObserver
     [SerializeField] float attackSpeed;
     [SerializeField] int damage;
     public GameObject player;
-    public enum States { idle, followPlayer, death, attack,failPlayer}
+    public enum States { spawning,idleMov , idle, followPlayer, death, attack,failPlayer}
     public States currentBehaviour;
 
     public NavMeshAgent agent;
     Animator _animator;
     public enemyCreator _enemyCreator;
     bool attackActive = true;
+    public bool idleMove = true;
+    Vector3 idleMoveTarget;
+    Vector3 currentPos;
+    Vector3 previousPos;
+    float idleMoveCounter = 0;
     void Start()
     {
       GameManager.Instance.Add_LoseObserver(this);
         agent = GetComponent<NavMeshAgent>();
         _animator = GetComponent<Animator>();
-
+        GetComponent<Collider>().enabled = false;
+        agent.enabled = false;
+        transform.position = new Vector3(transform.position.x, -6.44f, transform.position.z);
     }
-
+    public void climbAnim()
+    {
+        transform.position = new Vector3(transform.position.x, 0, transform.position.z);
+        agent.enabled = true;
+        GetComponent<Collider>().enabled = true;
+        if (idleMove)
+        {
+            currentBehaviour = States.idle;
+            StartCoroutine(waitingTime());
+        }
+    }
+    public void idleEnum()
+    {
+        currentBehaviour = States.idle;
+        StartCoroutine(waitingTime());
+    }
+    IEnumerator waitingTime()
+    {
+        float counter = 0f;
+        float waitingTimer = Random.Range(2f, 4f);
+        while (idleMove && counter < waitingTimer)
+        {
+            counter += Time.deltaTime;
+            yield return null;
+        }
+        currentPos = Vector3.zero;
+        previousPos = Vector3.zero;
+        if (idleMove)
+        {
+            idleMoveTarget = transform.position + new Vector3(Random.Range(-5f, 5f), 0, Random.Range(-5f, 5f));
+            currentBehaviour = States.idleMov;
+        }
+    }
+    void idleMoving()
+    {
+        if (Vector3.Distance(idleMoveTarget, transform.position) >= 0.2f)
+        {
+            agent.SetDestination(idleMoveTarget);
+            _animator.SetBool("run", true);
+            idleMoveCounter += Time.deltaTime;
+            if (idleMoveCounter > 2f)
+            {
+                idleMoveCounter = 0;
+                currentBehaviour = States.idle;
+                StartCoroutine(waitingTime());
+            }
+        }
+        else
+        {
+            currentBehaviour = States.idle;
+            StartCoroutine(waitingTime());
+        }
+    }
     // Update is called once per frame
     void Update()
     {
         switch (currentBehaviour)
         {
+            case States.spawning:
+                {
+              
+                }
+                break;
+            case States.idleMov:
+                {
+                    if(agent.enabled && idleMove)
+                    idleMoving();
+                }
+                break;
+
             case States.idle:
                 {
-                    agent.SetDestination(transform.position);
-                    _animator.SetBool("run", false);
+                    if (agent.enabled)
+                    {
+                        agent.SetDestination(transform.position);
+                        _animator.SetBool("run", false);
+                    }
                 }
                 break;
             case States.followPlayer:
                 {
-                    if (Globals.isGameActive)
+                    if (Globals.isGameActive && agent.enabled)
                     {
                         following();
                     }
@@ -79,12 +155,13 @@ public class enemy : MonoBehaviour,ILoseObserver
               GameObject coins =  Instantiate(coinPrefab, transform.position + new Vector3(Random.Range(-0.5f, 0.5f), 7, Random.Range(-0.5f, 0.5f)), Quaternion.identity);
                 coins.GetComponent<coin>().moneyAmount = earnMoney;
             }
+            mesh.material = deadMat;
             Destroy(gameObject, 2f);
         }
     }
     void following()
     {
-        if (Vector3.Distance(player.transform.position, transform.position) > 4f)
+        if (Vector3.Distance(player.transform.position, transform.position) >= 6f)
         {
             agent.SetDestination(player.transform.position);
             _animator.SetBool("run", true);
@@ -96,7 +173,7 @@ public class enemy : MonoBehaviour,ILoseObserver
     }
     void _attack()
     {
-        if (Vector3.Distance(player.transform.position, transform.position) < 4f)
+        if (Vector3.Distance(player.transform.position, transform.position) < 6f)
         {
             agent.SetDestination(transform.position);
             _animator.SetBool("attack", true);
@@ -107,6 +184,7 @@ public class enemy : MonoBehaviour,ILoseObserver
         }
         else
         {
+            _animator.SetBool("attack", false);
             currentBehaviour = States.followPlayer;
         }
     }

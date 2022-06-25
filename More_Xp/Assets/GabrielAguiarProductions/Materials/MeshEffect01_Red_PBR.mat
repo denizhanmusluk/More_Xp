@@ -8,8 +8,7 @@ Material:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: MeshEffect01_Red_PBR
-  m_Shader: {fileID: -6465566751694194690, guid: d69c0e3d07b132b469d2301f0e177ce4,
-    type: 3}
+  m_Shader: {fileID: -6465566751694194690, guid: d69c0e3d07b132b469d2301f0e177ce4, type: 3}
   m_ShaderKeywords: 
   m_LightmapFlags: 4
   m_EnableInstancingVariants: 0
@@ -32,6 +31,18 @@ Material:
         m_Texture: {fileID: 2800000, guid: e5afad012fdd8df47b41db075dd03686, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
+    - unity_Lightmaps:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - unity_LightmapsInd:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - unity_ShadowMasks:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
     m_Floats:
     - Vector1_1DA065AB: 1.5
     - Vector1_460A08CE: 10
@@ -49,3 +60,4 @@ Material:
     - Color_B154983C: {r: 9.082411, g: 0.80838215, b: 0, a: 1}
     - Vector2_1162408B: {r: 0, g: 0.2, b: 0, a: 0}
     - Vector2_40266A0F: {r: 0, g: 0.1, b: 0, a: 0}
+  m_BuildTextureStacks: []

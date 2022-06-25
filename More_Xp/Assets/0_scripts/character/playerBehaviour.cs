@@ -57,6 +57,7 @@ public class playerBehaviour : MonoBehaviour
     {
         if (other.transform.GetComponent<enemy>() != null)
         {
+            other.GetComponent<enemy>().idleMove = false;
             other.GetComponent<enemy>().currentBehaviour = enemy.States.followPlayer;
             enemies.Add(other.gameObject);
         }
@@ -66,7 +67,8 @@ public class playerBehaviour : MonoBehaviour
     {
         if (other.transform.GetComponent<enemy>() != null)
         {
-            other.GetComponent<enemy>().currentBehaviour = enemy.States.idle;
+            other.GetComponent<enemy>().idleMove = true;
+            other.GetComponent<enemy>().idleEnum();
             enemies.Remove(other.gameObject);
         }
     }
@@ -86,7 +88,7 @@ public class playerBehaviour : MonoBehaviour
     {
         for (int i = 0; i < enemies.Count; i++)
         {
-            if (Vector3.Distance(enemies[i].transform.position, transform.position) < 7)
+            if (Vector3.Distance(enemies[i].transform.position, transform.position) < 9.5f)
             {
                 attacking = false;
 
@@ -158,9 +160,9 @@ public class playerBehaviour : MonoBehaviour
         //swordParticle.SetActive(false);
         for (int i = 0; i < enemies.Count; i++)
         {
-            if (Vector3.Distance(enemies[i].transform.position, transform.position) < 7)
+            if (Vector3.Distance(enemies[i].transform.position, transform.position) < 9)
             {
-                enemies[i].GetComponent<enemy>().dead(Globals.swordDamage, (enemies[i].transform.position - transform.position).normalized/2);
+                enemies[i].GetComponent<enemy>().dead(Globals.swordDamage, (enemies[i].transform.position - transform.position).normalized + new Vector3(0,-0.3f,0));
                 //Vector3 forceDirection = (enemies[i].transform.position - transform.position).normalized;
                 //enemies[i].GetComponent<Ragdoll>().RagdollActivateWithForce(true, 0.35f * (forceDirection + new Vector3(0, 0.5f, 0)));
 
@@ -219,19 +221,19 @@ public class playerBehaviour : MonoBehaviour
 
         _skillManager.skillSelect();
         //currentAttack = States.normalAttack;
-        Globals.isGameActive = true;
         attacking = true;
         for (int i = 0; i < Globals.lightningAmount; i++)
         {
             stompAttacking();
             yield return new WaitForSeconds(0.2f);
         }
+        Globals.isGameActive = true;
     }
     void stompAttacking()
     {
         GameObject stomp0 = Instantiate(stompAreaPrefab, transform.position + transform.GetChild(0).forward * Random.Range(-20f, 20f) + new Vector3(Random.Range(-10f, 10f), 0, Random.Range(-10f, 10f)), Quaternion.identity);
         stomp0.GetComponent<stompAttack>()._playerBeh = this;
-        GameObject lighting1 = Instantiate(lightingEffects[(Globals.stompLevel - 1) % lightingEffects.Count], new Vector3(stomp0.transform.position.x, 33, stomp0.transform.position.z), Quaternion.identity);
+        GameObject lighting1 = Instantiate(lightingEffects[(Globals.stompLevel - 1) % lightingEffects.Count], new Vector3(stomp0.transform.position.x, 37, stomp0.transform.position.z), Quaternion.identity);
         Destroy(lighting1, 2);
         //yield return new WaitForSeconds(0.2f);
 
@@ -286,8 +288,10 @@ public class playerBehaviour : MonoBehaviour
             enemyAmont = enemies.Count;
             for (int i = 0; i < enemyAmont; i++)
             {
-
-                enemies[0].GetComponent<enemy>().dead(Globals.spinDamage, (enemies[0].transform.position - transform.position).normalized);
+                if (Vector3.Distance(enemies[0].transform.position, transform.position) < 9f)
+                {
+                    enemies[0].GetComponent<enemy>().dead(Globals.spinDamage, 2 * (enemies[0].transform.position - transform.position).normalized);
+                }
                 //Vector3 forceDirection = (enemies[0].transform.position - transform.position).normalized;
                 //enemies[0].GetComponent<Ragdoll>().RagdollActivateWithForce(true, 0.35f * (forceDirection + new Vector3(0, 0.5f, 0)));
 
@@ -366,7 +370,7 @@ public class playerBehaviour : MonoBehaviour
     {
         //Globals.isGameActive = false;
         StartCoroutine(_attack(_enemy, 1));
-        //animator.SetTrigger("stomp");
+        animator.SetTrigger("meteor");
         meteorAttackAnimationEvent();
 
     }
@@ -390,11 +394,11 @@ public class playerBehaviour : MonoBehaviour
     }
     IEnumerator meteorAttacking()
     {
-        Vector3 pos = transform.position + transform.GetChild(0).forward * Random.Range(0, 20f) + new Vector3(Random.Range(-10f, 10f), 0, Random.Range(-10f, 10f));
+        Vector3 pos = transform.position + transform.GetChild(0).forward * Random.Range(0, 8f) + new Vector3(Random.Range(-8, 8f), 0, Random.Range(-8f, 8f));
 
         GameObject meteorEffect = Instantiate(meteorEffects[(Globals.meteorLevel - 1) % meteorEffects.Count], pos, Quaternion.identity);
         Destroy(meteorEffect, 2.5f);
-        yield return new WaitForSeconds(2f);
+        yield return new WaitForSeconds(2.14f);
         GameObject meteor = Instantiate(meteorAreaPrefab, pos, Quaternion.identity);
         meteor.GetComponent<meteorAttack>()._playerBeh = this;
 
@@ -426,7 +430,7 @@ public class playerBehaviour : MonoBehaviour
         tornadoEffect.transform.parent = tornado.transform;
 
 
-        yield return new WaitForSeconds(2f);
+        yield return new WaitForSeconds(1.4f);
         _skillManager.skillSelect();
         Globals.isGameActive = true;
         attacking = true;
