@@ -7,6 +7,7 @@ using TapticPlugin;
 
 public class islandBuy : MonoBehaviour
 {
+    [SerializeField] GameObject particlePrefab;
     [SerializeField] GameObject obstacle;
     [SerializeField] GameObject canvas;
     bool sellActive = true;
@@ -96,10 +97,31 @@ public class islandBuy : MonoBehaviour
     }
     void openIsland()
     {
+        var partEff = Instantiate(particlePrefab, transform.position, Quaternion.identity);
+        partEff.transform.rotation = Quaternion.Euler(-90, 0, 0);
         sellActive = false;
         PlayerPrefs.SetInt(islandName, 1);
-        obstacle.SetActive(false);
+        StartCoroutine(unlocked());
         canvas.SetActive(false);
         enemyCreat.spawn();
+    }
+    IEnumerator unlocked()
+    {
+        obstacle.transform.GetChild(0).gameObject.SetActive(false);
+        obstacle.transform.GetChild(1).gameObject.SetActive(true);
+        float counter = 0f;
+        float val = 0f;
+        float firstPosY = obstacle.transform.GetChild(1).transform.position.y;
+        while (counter < 3 * Mathf.PI / 2)
+        {
+            counter += 4 * Time.deltaTime;
+            val = Mathf.Sin(counter);
+            obstacle.transform.GetChild(1).transform.position = new Vector3 (obstacle.transform.GetChild(1).transform.position.x, firstPosY + val * 2 * counter, obstacle.transform.GetChild(1).transform.position.z);
+
+            yield return null;
+        }
+        //yield return new WaitForSeconds(1f);
+        obstacle.SetActive(false);
+
     }
 }

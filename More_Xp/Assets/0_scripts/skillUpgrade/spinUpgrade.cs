@@ -7,6 +7,7 @@ using TapticPlugin;
 
 public class spinUpgrade : MonoBehaviour
 {
+    [SerializeField] GameObject particlePrefab;
     [SerializeField] GameObject emptyTeacher, teacher;
     [SerializeField] GameObject buyIcon;
     [SerializeField] GameObject[] upgradeIcons;
@@ -27,6 +28,7 @@ public class spinUpgrade : MonoBehaviour
     [SerializeField] int[] coolDownLevel;
     [SerializeField] int[] damageLevel;
     [SerializeField] float[] spinTimeLevel;
+
     void Start()
     {
 
@@ -77,6 +79,8 @@ public class spinUpgrade : MonoBehaviour
     // Update is called once per frame
     void levelUp()
     {
+        var partEff = Instantiate(particlePrefab, transform.position, Quaternion.identity);
+        partEff.transform.rotation = Quaternion.Euler(-90, 0, 0);
         if (Globals.spinLevel == 0)
         {
             spinOpen();

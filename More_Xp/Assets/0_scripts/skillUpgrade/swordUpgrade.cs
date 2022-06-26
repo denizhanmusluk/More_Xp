@@ -7,7 +7,7 @@ using TapticPlugin;
 
 public class swordUpgrade : MonoBehaviour
 {
-
+    [SerializeField] GameObject particlePrefab;
     //[SerializeField] GameObject buyIcon;
     [SerializeField] GameObject[] upgradeIcons;
     //[SerializeField] GameObject swordImage;
@@ -49,7 +49,7 @@ public class swordUpgrade : MonoBehaviour
         outline.fillAmount = 1 - (float)currentAmount / (float)currentCost;
 
         Globals.swordDamage = damageLevel[Globals.swordLevel];
-        Globals.swordAttackSpeed = damageLevel[Globals.swordLevel];
+        Globals.swordAttackSpeed = attackSpeedLevel[Globals.swordLevel];
         iconSet();
 
         /*
@@ -83,6 +83,8 @@ public class swordUpgrade : MonoBehaviour
         //{
         //    stompOpen();
         //}
+        var partEff = Instantiate(particlePrefab, transform.position, Quaternion.identity);
+        partEff.transform.rotation = Quaternion.Euler(-90, 0, 0);
         swordLevel++;
         Globals.swordLevel = swordLevel;
         PlayerPrefs.SetInt("swordLevel", Globals.swordLevel);
@@ -94,7 +96,7 @@ public class swordUpgrade : MonoBehaviour
         outline.fillAmount = 1 - (float)currentAmount / (float)currentCost;
 
         Globals.swordDamage = damageLevel[Globals.swordLevel];
-        Globals.swordAttackSpeed = damageLevel[Globals.swordLevel];
+        Globals.swordAttackSpeed = attackSpeedLevel[Globals.swordLevel];
 
         if (Globals.swordLevel == cost.Length - 1)
         {

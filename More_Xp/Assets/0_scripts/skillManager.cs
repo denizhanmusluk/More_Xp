@@ -11,7 +11,8 @@ public class skillManager : MonoBehaviour
     [SerializeField] GameObject bashIconEffect, stompIconEffect, spinIconEffect, meteorIconEffect, tornadoIconEffect, assassinIconEffect;
     bool bash = false, stomp = false, spin = false, meteor = false, tornado = false, assassin = false;
     public playerBehaviour _playerBehaviour;
-
+  [SerializeField]  List<int> skilId;
+    int skillSelectNo;
     void Awake()
     {
         if (Instance == null)
@@ -33,6 +34,7 @@ public class skillManager : MonoBehaviour
         //meteorCooldown();
         //tornadoCooldown();
         //assassinCooldown();
+
     }
 
     public void bashCooldown()
@@ -162,35 +164,120 @@ public class skillManager : MonoBehaviour
     }
 
 
-    public  void skillSelect()
+    public void skillSelect()
     {
+        Debug.Log("skill select");
+        skillSelectNo = 0;
+        if (skilId.Count != 0)
+        skilId.Clear();
         if (bash)
         {
-            _playerBehaviour.currentAttack = playerBehaviour.States.bash;
+            skilId.Add(1);
         }
-        else if (stomp)
+        if (stomp)
         {
-            _playerBehaviour.currentAttack = playerBehaviour.States.stomp;
+            skilId.Add(2);
+
         }
-        else if (spin)
+        if (spin)
         {
-            _playerBehaviour.currentAttack = playerBehaviour.States.spin;
+            skilId.Add(3);
+
         }
-        else if (meteor)
+        if (meteor)
         {
-            _playerBehaviour.currentAttack = playerBehaviour.States.meteor;
+            skilId.Add(4);
+
         }
-        else if (tornado)
+        if (tornado)
         {
-            _playerBehaviour.currentAttack = playerBehaviour.States.tornado;
+            skilId.Add(5);
+
         }
-        else if (assassin)
+        if (assassin)
         {
-            _playerBehaviour.currentAttack = playerBehaviour.States.assassin;
+            skilId.Add(6);
+
+        }
+
+
+            skillSelectNo = Random.Range(0, skilId.Count);
+        if (skilId.Count == 0)
+        {
+            Debug.Log("normal  ");
+
+            _playerBehaviour.currentAttack = playerBehaviour.States.normalAttack;
         }
         else
         {
-            _playerBehaviour.currentAttack = playerBehaviour.States.normalAttack;
+            if (skilId[skillSelectNo] == 1)
+            {
+                Debug.Log("stomp  " + skilId[skillSelectNo]);
+
+                _playerBehaviour.currentAttack = playerBehaviour.States.bash;
+            }
+            if (skilId[skillSelectNo] == 2)
+            {
+                Debug.Log("bash  " + skilId[skillSelectNo]);
+
+                _playerBehaviour.currentAttack = playerBehaviour.States.stomp;
+            }
+            if (skilId[skillSelectNo] == 3)
+            {
+                Debug.Log("spin  " + skilId[skillSelectNo]);
+
+                _playerBehaviour.currentAttack = playerBehaviour.States.spin;
+            }
+            if (skilId[skillSelectNo] == 4)
+            {
+                Debug.Log("meteor  " + skilId[skillSelectNo]);
+
+                _playerBehaviour.currentAttack = playerBehaviour.States.meteor;
+            }
+            if (skilId[skillSelectNo] == 5)
+            {
+                Debug.Log("tornado  " + skilId[skillSelectNo]);
+
+                _playerBehaviour.currentAttack = playerBehaviour.States.tornado;
+            }
+            if (skilId[skillSelectNo] == 6)
+            {
+                Debug.Log("assassin  " + skilId[skillSelectNo]);
+
+                _playerBehaviour.currentAttack = playerBehaviour.States.assassin;
+            }
         }
+
+     
+
+
+        //if (bash)
+        //{
+        //    _playerBehaviour.currentAttack = playerBehaviour.States.bash;
+        //}
+        //else if (stomp)
+        //{
+        //    _playerBehaviour.currentAttack = playerBehaviour.States.stomp;
+        //}
+        //else if (spin)
+        //{
+        //    _playerBehaviour.currentAttack = playerBehaviour.States.spin;
+        //}
+        //else if (meteor)
+        //{
+        //    _playerBehaviour.currentAttack = playerBehaviour.States.meteor;
+        //}
+        //else if (tornado)
+        //{
+        //    _playerBehaviour.currentAttack = playerBehaviour.States.tornado;
+        //}
+        //else if (assassin)
+        //{
+        //    _playerBehaviour.currentAttack = playerBehaviour.States.assassin;
+        //}
+        //else
+        //{
+        //    _playerBehaviour.currentAttack = playerBehaviour.States.normalAttack;
+        //}
     }
 }

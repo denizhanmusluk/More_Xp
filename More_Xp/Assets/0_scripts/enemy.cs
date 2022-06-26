@@ -34,6 +34,12 @@ public class enemy : MonoBehaviour,ILoseObserver
         GetComponent<Collider>().enabled = false;
         agent.enabled = false;
         transform.position = new Vector3(transform.position.x, -6.44f, transform.position.z);
+        StartCoroutine(inm());
+    }
+    IEnumerator inm()
+    {
+        yield return new WaitForSeconds(3.85f);
+        climbAnim();
     }
     public void climbAnim()
     {
@@ -148,7 +154,7 @@ public class enemy : MonoBehaviour,ILoseObserver
             currentBehaviour = States.death;
             agent.enabled = false;
             _enemyCreator.enemyAll.Remove(gameObject);
-            player.transform.parent.GetComponent<playerBehaviour>().enemies.Remove(this.gameObject);
+            StartCoroutine(deadRemoveList());
             GetComponent<Ragdoll>().RagdollActivateWithForce(true, 0.35f * forceDirection);
             for (int i = 0; i < coinCount; i++)
             {
@@ -158,6 +164,40 @@ public class enemy : MonoBehaviour,ILoseObserver
             mesh.material = deadMat;
             Destroy(gameObject, 2f);
         }
+        else
+        {
+            _animator.SetTrigger("hit");
+            currentBehaviour = States.death;
+
+            agent.enabled = false;
+
+            StartCoroutine(hitEnemyimpulse(forceDirection));
+            StartCoroutine(hitEnemy());
+        }
+    }
+    IEnumerator hitEnemyimpulse(Vector3 direction)
+    {
+        float counter = 0f;
+        while(counter < 2f)
+        {
+            counter += Time.deltaTime;
+            transform.position = Vector3.MoveTowards(transform.position, transform.position + new Vector3(direction.x, 0, direction.z), (2 - counter) * 5 * Time.deltaTime);
+
+            yield return null;
+        }
+    }
+    IEnumerator hitEnemy()
+    {
+        yield return new WaitForSeconds(5.24f);
+        agent.enabled = true;
+        currentBehaviour = States.idle;
+
+    }
+    IEnumerator deadRemoveList()
+    {
+        yield return new WaitForSeconds(0.05f);
+        player.transform.parent.GetComponent<playerBehaviour>().enemies.Remove(this.gameObject);
+
     }
     void following()
     {

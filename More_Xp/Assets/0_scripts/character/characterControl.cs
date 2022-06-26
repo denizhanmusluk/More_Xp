@@ -38,6 +38,10 @@ public class characterControl : MonoBehaviour
     {
         _playerBehaviour.tornadoAttackAnimationEvent();
     }
+    public void meteorAnim()
+    {
+        _playerBehaviour.meteorAttackAnimationEvent();
+    }
     public void playerStop()
     {
         float firstAngleX = Mathf.Cos((transform.localEulerAngles.y + 90) * Mathf.Deg2Rad);

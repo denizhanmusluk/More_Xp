@@ -2376,7 +2376,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   deadMat: {fileID: 2100000, guid: cdbd5b7b46de6a740a492e719020a9e9, type: 2}
   mesh: {fileID: 7460063254153597959}
-  Health: 1
+  Health: 5
   earnMoney: 10
   coinPrefab: {fileID: 5083195112516652906, guid: b0a5dc3418d340040a9a3ec0cdef7722, type: 3}
   coinCount: 2
@@ -2386,6 +2386,7 @@ MonoBehaviour:
   currentBehaviour: 0
   agent: {fileID: 0}
   _enemyCreator: {fileID: 0}
+  idleMove: 1
 --- !u!136 &7658070415461158330
 CapsuleCollider:
   m_ObjectHideFlags: 0

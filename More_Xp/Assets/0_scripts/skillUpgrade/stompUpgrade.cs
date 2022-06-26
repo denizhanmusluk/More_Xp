@@ -6,6 +6,7 @@ using TMPro;
 using TapticPlugin;
 public class stompUpgrade : MonoBehaviour
 {
+    [SerializeField] GameObject particlePrefab;
     [SerializeField] GameObject emptyTeacher, teacher;
     [SerializeField] GameObject buyIcon;
     [SerializeField] GameObject[] upgradeIcons;
@@ -77,6 +78,8 @@ public class stompUpgrade : MonoBehaviour
     // Update is called once per frame
     void levelUp()
     {
+        var partEff = Instantiate(particlePrefab, transform.position, Quaternion.identity);
+        partEff.transform.rotation = Quaternion.Euler(-90, 0, 0);
         if (Globals.stompLevel == 0)
         {
             stompOpen();
