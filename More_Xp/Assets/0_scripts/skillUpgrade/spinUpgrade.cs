@@ -26,8 +26,8 @@ public class spinUpgrade : MonoBehaviour
     float counterTime = 0;
     public int spinLevel;
     [SerializeField] int[] coolDownLevel;
-    [SerializeField] int[] damageLevel;
     [SerializeField] float[] spinTimeLevel;
+    [SerializeField] int[] damageLevel;
 
     void Start()
     {
@@ -79,6 +79,7 @@ public class spinUpgrade : MonoBehaviour
     // Update is called once per frame
     void levelUp()
     {
+        PlayerPrefs.SetInt("skiller", 1);
         var partEff = Instantiate(particlePrefab, transform.position, Quaternion.identity);
         partEff.transform.rotation = Quaternion.Euler(-90, 0, 0);
         if (Globals.spinLevel == 0)

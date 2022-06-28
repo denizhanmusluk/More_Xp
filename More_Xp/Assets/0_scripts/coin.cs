@@ -62,7 +62,7 @@ public class coin : MonoBehaviour
         GameManager.Instance.MoneyUpdate(moneyAmount);
 
         /////////////////
-        //target.GetComponent<playerHealth>().characterHealthUp(2);
+        target.GetComponent<playerHealth>().characterHealthUp(2);
         /////////////////
 
 

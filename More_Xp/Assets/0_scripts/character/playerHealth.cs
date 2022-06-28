@@ -10,7 +10,7 @@ public class playerHealth : MonoBehaviour
     public float health;
     [SerializeField] Slider healthBar;
     bool fillActive = false;
-    [SerializeField] float coolDownSpeed;
+    [SerializeField] public float healthRegenSpeed;
     [SerializeField] Image sliderImage;
     bool cooldownActive = true;
     [SerializeField] Ragdoll _ragdoll;
@@ -47,9 +47,9 @@ public class playerHealth : MonoBehaviour
         {
             if (health < maxHealth && cooldownActive)
             {
-                StartCoroutine(_coolDownFill(1, 1f / coolDownSpeed));
+                StartCoroutine(_coolDownFill(1, 1f / healthRegenSpeed));
             }
-            yield return new WaitForSeconds(1f / coolDownSpeed);
+            yield return new WaitForSeconds(1f / healthRegenSpeed);
         }
     }
 

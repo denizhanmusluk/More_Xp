@@ -17,14 +17,19 @@ public class assassinAttack : MonoBehaviour
     }
     IEnumerator forwardMove()
     {
-        for (int i = 0; i < enemies.Count; i++)
+        float count = enemies.Count;
+        for (int i = 0; i < count; i++)
         {
             GetComponent<Collider>().enabled = false;
-            while (Vector3.Distance(transform.position, enemies[i].transform.position) > 0.5f)
+      
+            while (enemies[0] != null && Vector3.Distance(transform.position, enemies[0].transform.position) > 0.5f)
             {
-                transform.position = Vector3.MoveTowards(transform.position, enemies[i].transform.position, 307 * Time.deltaTime);
+             
+                    transform.position = Vector3.MoveTowards(transform.position, enemies[0].transform.position, 307 * Time.deltaTime);
                 yield return null;
+           
             }
+            enemies.Remove(enemies[0]);
             GetComponent<Collider>().enabled = true;
             yield return new WaitForSeconds(0.2f);
 

@@ -12,6 +12,7 @@ public class enemyCreator : MonoBehaviour,IStartGameObserver
 
     [SerializeField] int maxEnemyCount;
     [SerializeField] bool creating;
+    [SerializeField] float spawnTime;
     void Start()
     {
         GameManager.Instance.Add_StartObserver(this);
@@ -45,7 +46,8 @@ public class enemyCreator : MonoBehaviour,IStartGameObserver
             {
                 enemySpawn();
             }
-            yield return new WaitForSeconds(0.3f);
+            float spawnTimeFactor = 0.1f * ((float)Globals.swordLevel + (float)Globals.stompLevel + (float)Globals.meteorLevel + (float)Globals.spinLevel + (float)Globals.tornadoLevel + (float)Globals.assassinLevel) / 6;
+            yield return new WaitForSeconds(1 / (spawnTime + spawnTimeFactor));
         }
     }
     void enemySpawn()

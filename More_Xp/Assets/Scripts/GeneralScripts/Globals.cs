@@ -8,7 +8,7 @@ public static class Globals
     public static int currentLevel = 1;
     public static int maxScore = 0;
     public static int currentLevelIndex = 0, LevelCount;
-    public static int moneyAmount = 100000;
+    public static int moneyAmount = 0;
 
 
     public static int killedEnemy = 0;

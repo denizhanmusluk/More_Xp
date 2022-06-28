@@ -25,8 +25,9 @@ public class tornadoUpgrade : MonoBehaviour
     float counterTime = 0;
     public int tornadoLevel;
     [SerializeField] int[] coolDownLevel;
-    [SerializeField] int[] damageLevel;
     [SerializeField] int[] tornadoDistanceLevel;
+    [SerializeField] int[] damageLevel;
+
     void Start()
     {
 
@@ -77,6 +78,7 @@ public class tornadoUpgrade : MonoBehaviour
     // Update is called once per frame
     void levelUp()
     {
+        PlayerPrefs.SetInt("skiller", 1);
         var partEff = Instantiate(particlePrefab, transform.position, Quaternion.identity);
         partEff.transform.rotation = Quaternion.Euler(-90, 0, 0);
         if (Globals.tornadoLevel == 0)

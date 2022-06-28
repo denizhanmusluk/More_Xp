@@ -79,6 +79,7 @@ public class swordUpgrade : MonoBehaviour
     // Update is called once per frame
     void levelUp()
     {
+        PlayerPrefs.SetInt("skiller", 1);
         //if (Globals.stompLevel == 0)
         //{
         //    stompOpen();

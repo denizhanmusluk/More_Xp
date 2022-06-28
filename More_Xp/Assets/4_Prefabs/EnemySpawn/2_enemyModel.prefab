@@ -441,7 +441,7 @@ SkinnedMeshRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1232907651862021351}
   m_Enabled: 1
-  m_CastShadows: 1
+  m_CastShadows: 0
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
   m_MotionVectors: 1
@@ -2376,16 +2376,17 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   deadMat: {fileID: 2100000, guid: cdbd5b7b46de6a740a492e719020a9e9, type: 2}
   mesh: {fileID: 7460063254153597959}
-  Health: 2
-  earnMoney: 10
+  Health: 25
+  earnMoney: 12
   coinPrefab: {fileID: 5083195112516652906, guid: b0a5dc3418d340040a9a3ec0cdef7722, type: 3}
   coinCount: 2
-  attackSpeed: 1
-  damage: 2
+  attackSpeed: 1.2
+  damage: 6
   player: {fileID: 0}
   currentBehaviour: 0
   agent: {fileID: 0}
   _enemyCreator: {fileID: 0}
+  idleMove: 1
 --- !u!136 &7658070415461158330
 CapsuleCollider:
   m_ObjectHideFlags: 0

@@ -55,7 +55,6 @@ public class GameManager : MonoBehaviour, IWinObserver, ILoseObserver
         PlayerPrefs.SetInt("money", Globals.moneyAmount);
 
     }
-
     void Start()
     {
         //downArrow.gameObject.SetActive(false);
@@ -63,7 +62,7 @@ public class GameManager : MonoBehaviour, IWinObserver, ILoseObserver
 
 
 
-        //Globals.moneyAmount = PlayerPrefs.GetInt("money");
+        Globals.moneyAmount = PlayerPrefs.GetInt("money");
         moneyPanel.enabled = true;
 
 
@@ -105,21 +104,28 @@ public class GameManager : MonoBehaviour, IWinObserver, ILoseObserver
     {
         if (Input.GetKeyDown(KeyCode.Space))
         {
-            PlayerPrefs.SetInt("currentDoctorCount", 0);
-            PlayerPrefs.SetInt("hospitalLevel", 0);            
-            PlayerPrefs.SetInt("policeStationLevel", 0);
-            PlayerPrefs.SetInt("currentPoliceCount", 0);
-            PlayerPrefs.SetInt("currentFarmerCount", 0);
-            PlayerPrefs.SetInt("farmvillelevel", 0);
-            PlayerPrefs.SetInt("universityLevel", 0);
-            PlayerPrefs.SetInt("currentTeacherCount", 0);
 
-            PlayerPrefs.SetInt("money", 0);
+            //PlayerPrefs.SetInt("currentDoctorCount", 0);
+            //PlayerPrefs.SetInt("hospitalLevel", 0);            
+            //PlayerPrefs.SetInt("policeStationLevel", 0);
+            //PlayerPrefs.SetInt("currentPoliceCount", 0);
+            //PlayerPrefs.SetInt("currentFarmerCount", 0);
+            //PlayerPrefs.SetInt("farmvillelevel", 0);
+            //PlayerPrefs.SetInt("universityLevel", 0);
+            //PlayerPrefs.SetInt("currentTeacherCount", 0);
 
-            PlayerPrefs.SetInt("levelIndex", 1);
-            PlayerPrefs.SetInt("level", 0);
+            //PlayerPrefs.SetInt("money", 0);
+
+            //PlayerPrefs.SetInt("levelIndex", 1);
+            //PlayerPrefs.SetInt("level", 0);
+            MoneyUpdate(10000);
+        }
+        if (Input.GetKeyDown(KeyCode.Z))
+        {
+            MoneyUpdate(-5000);
 
         }
+
     }
 
 

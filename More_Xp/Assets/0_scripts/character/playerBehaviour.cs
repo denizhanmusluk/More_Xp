@@ -172,13 +172,20 @@ public class playerBehaviour : MonoBehaviour
         //swordParticle.SetActive(false);
         for (int i = 0; i < enemies.Count; i++)
         {
-            if (Vector3.Distance(enemies[i].transform.position, transform.position) < 9f)
+            if (enemies[i] != null)
             {
-                enemies[i].GetComponent<enemy>().dead(Globals.swordDamage, (enemies[i].transform.position - transform.position).normalized + new Vector3(0,-0.3f,0));
-                //Vector3 forceDirection = (enemies[i].transform.position - transform.position).normalized;
-                //enemies[i].GetComponent<Ragdoll>().RagdollActivateWithForce(true, 0.35f * (forceDirection + new Vector3(0, 0.5f, 0)));
+                if (Vector3.Distance(enemies[i].transform.position, transform.position) < 9f)
+                {
+                    enemies[i].GetComponent<enemy>().dead(Globals.swordDamage, (enemies[i].transform.position - transform.position).normalized + new Vector3(0, -0.3f, 0));
+                    //Vector3 forceDirection = (enemies[i].transform.position - transform.position).normalized;
+                    //enemies[i].GetComponent<Ragdoll>().RagdollActivateWithForce(true, 0.35f * (forceDirection + new Vector3(0, 0.5f, 0)));
 
-                //enemies.Remove(enemies[i]);
+                    //enemies.Remove(enemies[i]);
+                }
+            }
+            else
+            {
+                enemies.Remove(enemies[i]);
             }
         }
         attacking = true;
@@ -371,7 +378,6 @@ public class playerBehaviour : MonoBehaviour
         assassinEffect.transform.localPosition = new Vector3(0, 2, 0);
 
         yield return new WaitForSeconds(2f);
-        //_skillManager.skillSelect();
         //Globals.isGameActive = true;
         //attacking = true;
     }

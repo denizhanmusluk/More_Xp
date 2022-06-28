@@ -7,6 +7,8 @@ using TapticPlugin;
 
 public class islandBuy : MonoBehaviour
 {
+    [SerializeField] int healthUp;
+
     [SerializeField] GameObject particlePrefab;
     [SerializeField] GameObject obstacle;
     [SerializeField] GameObject canvas;
@@ -20,6 +22,7 @@ public class islandBuy : MonoBehaviour
     [SerializeField] string islandName;
     float counterTime = 0;
     [SerializeField] enemyCreator enemyCreat;
+    [SerializeField] GameObject playerParn;
     void Start()
     {
 
@@ -97,6 +100,7 @@ public class islandBuy : MonoBehaviour
     }
     void openIsland()
     {
+        playerParn.GetComponent<playerHealth>().maxHealth += healthUp;
         var partEff = Instantiate(particlePrefab, transform.position, Quaternion.identity);
         partEff.transform.rotation = Quaternion.Euler(-90, 0, 0);
         sellActive = false;
@@ -104,6 +108,7 @@ public class islandBuy : MonoBehaviour
         StartCoroutine(unlocked());
         canvas.SetActive(false);
         enemyCreat.spawn();
+        ////////////////////////////
     }
     IEnumerator unlocked()
     {
