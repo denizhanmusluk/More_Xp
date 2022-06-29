@@ -63,6 +63,10 @@ public class enemy : MonoBehaviour,ILoseObserver
         float waitingTimer = Random.Range(2f, 4f);
         while (idleMove && counter < waitingTimer)
         {
+            if(Vector3.Distance( transform.position, player.transform.position) > 100)
+            {
+                enemyFarDead();
+            }
             counter += Time.deltaTime;
             yield return null;
         }
@@ -144,6 +148,13 @@ public class enemy : MonoBehaviour,ILoseObserver
                 }
                 break;
         }
+    }
+    public void enemyFarDead()
+    {
+        _enemyCreator.enemyAll.Remove(gameObject);
+        player.transform.parent.GetComponent<playerBehaviour>().enemies.Remove(this.gameObject);
+        Destroy(gameObject, 0.1f);
+
     }
     public void dead(int damage, Vector3 forceDirection)
     {

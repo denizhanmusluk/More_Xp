@@ -21,7 +21,7 @@ public class FirstPersonControllerScript : MonoBehaviour {
 
 	void Start()
 	{
-		Application.targetFrameRate = FPS;
+		//Application.targetFrameRate = FPS;
 		Cursor.lockState = CursorLockMode.Locked;
 		Cursor.visible = false;
 	}
