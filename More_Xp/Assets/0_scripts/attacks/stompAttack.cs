@@ -7,6 +7,7 @@ public class stompAttack : MonoBehaviour
     public playerBehaviour _playerBeh;
     void Start()
     {
+        VibratoManager.Instance.MediumViration();
         Destroy(gameObject, 0.2f);
     }
 

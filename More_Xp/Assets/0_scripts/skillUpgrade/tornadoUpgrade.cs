@@ -78,6 +78,7 @@ public class tornadoUpgrade : MonoBehaviour
     // Update is called once per frame
     void levelUp()
     {
+        VibratoManager.Instance.MediumViration();
         PlayerPrefs.SetInt("skiller", 1);
         var partEff = Instantiate(particlePrefab, transform.position, Quaternion.identity);
         partEff.transform.rotation = Quaternion.Euler(-90, 0, 0);
@@ -114,6 +115,7 @@ public class tornadoUpgrade : MonoBehaviour
             {
                 if (sellActive && isbuy)
                 {
+                    VibratoManager.Instance.LightViration();
                     StartCoroutine(buy());
                 }
             }

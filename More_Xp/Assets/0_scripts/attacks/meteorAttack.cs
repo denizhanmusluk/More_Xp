@@ -7,6 +7,7 @@ public class meteorAttack : MonoBehaviour
     public playerBehaviour _playerBeh;
     void Start()
     {
+        VibratoManager.Instance.HeavyViration();
         Destroy(gameObject, 0.2f);
     }
 

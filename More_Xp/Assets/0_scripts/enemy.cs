@@ -158,6 +158,7 @@ public class enemy : MonoBehaviour,ILoseObserver
     }
     public void dead(int damage, Vector3 forceDirection)
     {
+        VibratoManager.Instance.LightViration();
         Health -= damage;
         if (Health <= 0)
         {

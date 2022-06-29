@@ -79,6 +79,7 @@ public class swordUpgrade : MonoBehaviour
     // Update is called once per frame
     void levelUp()
     {
+        VibratoManager.Instance.MediumViration();
         PlayerPrefs.SetInt("skiller", 1);
         //if (Globals.stompLevel == 0)
         //{
@@ -116,6 +117,7 @@ public class swordUpgrade : MonoBehaviour
             {
                 if (sellActive && isbuy)
                 {
+                    VibratoManager.Instance.LightViration();
                     StartCoroutine(buy());
                 }
                 //GameManager.Instance.MoneyUpdate(-cost);

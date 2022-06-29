@@ -29,6 +29,7 @@ public class assassinAttack : MonoBehaviour
                 yield return null;
            
             }
+            VibratoManager.Instance.LightViration();
             enemies.Remove(enemies[0]);
             GetComponent<Collider>().enabled = true;
             yield return new WaitForSeconds(0.2f);

@@ -35,6 +35,7 @@ public class tornadoAttack : MonoBehaviour
     {
         if (other.transform.GetComponent<enemy>() != null)
         {
+            VibratoManager.Instance.MediumViration();
             other.GetComponent<enemy>().dead(Globals.tornadoDamage, transform.up *(4 + Globals.tornadoLevel/5) + (other.transform.position - transform.position).normalized);
             //Vector3 forceDirection = (other.transform.position - transform.position).normalized;
             //other.GetComponent<Ragdoll>().RagdollActivateWithForce(true, 0.35f * (forceDirection + new Vector3(0, 1f, 0)));

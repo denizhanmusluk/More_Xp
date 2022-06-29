@@ -80,6 +80,8 @@ public class assassinUpgrade : MonoBehaviour
     // Update is called once per frame
     void levelUp()
     {
+        VibratoManager.Instance.MediumViration();
+
         PlayerPrefs.SetInt("skiller", 1);
 
         var partEff = Instantiate(particlePrefab, transform.position, Quaternion.identity);
@@ -117,6 +119,7 @@ public class assassinUpgrade : MonoBehaviour
             {
                 if (sellActive && isbuy)
                 {
+                    VibratoManager.Instance.LightViration();
                     StartCoroutine(buy());
                 }
                 //GameManager.Instance.MoneyUpdate(-cost);
